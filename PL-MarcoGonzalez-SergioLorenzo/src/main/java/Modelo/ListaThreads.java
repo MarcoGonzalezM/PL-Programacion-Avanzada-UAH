@@ -25,6 +25,10 @@ public class ListaThreads {
         imprimir();
     }
     
+    public int getLongitud(){
+        return lista.size();
+    }
+    
     public void imprimir() {
         String contenido="";
         for(int i=0; i<lista.size(); i++) {
