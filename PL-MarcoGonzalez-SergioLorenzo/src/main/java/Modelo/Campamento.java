@@ -7,6 +7,8 @@ package Modelo;
 
 import java.util.Queue;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,10 +22,14 @@ public class Campamento {
     CountDownLatch cdl1 = new CountDownLatch(1);
     CountDownLatch cdl2 = new CountDownLatch(1);
     Semaphore semEntrada;
-
+    Lock lockCola1 = new ReentrantLock();
+    Lock lockCola2 = new ReentrantLock();
+    
     //CONSTRUCTOR
     public Campamento(int p_aforo){
-        semEntrada= new Semaphore(p_aforo);
+        //colaEntrada1 = new ListaThreads() por terminar
+        //colaEntrada2 = new ListaThreads() por terminar
+        semEntrada= new Semaphore(p_aforo, true);
     }
 
     public void llegaNinno(Ninno ninno){
@@ -34,8 +40,17 @@ public class Campamento {
                 cdl1.await();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
-            colaEntrada1.sacar(ninno);
             }
+            if (!(semEntrada.tryAcquire())&& (colaEntrada1.getLongitud()>0) && (colaEntrada2.getLongitud()>0)) {
+                lockCola1.lock();
+            }
+            try {
+                semEntrada.acquire();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            lockCola2.unlock();
+            colaEntrada1.sacar(ninno);
         } else {
             colaEntrada2.meter(ninno);
             try {
@@ -43,13 +58,22 @@ public class Campamento {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
             }
+            if (!(semEntrada.tryAcquire())&& (colaEntrada1.getLongitud()>0) && (colaEntrada2.getLongitud()>0)) {
+                lockCola2.lock();
+            }
+            try {
+                semEntrada.acquire();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            lockCola1.unlock();
             colaEntrada2.sacar(ninno);
         }
-        try {
-            semEntrada.acquire();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        
+    }
+    
+    public void abrirCamp(Monitor mon){
         
     }
 

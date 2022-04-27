@@ -1,6 +1,11 @@
 package GUI;
 
 import Modelo.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,6 +22,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
     int AFORO = 50;
     int N_MONITORES = 4;
     int N_NINNOS = 20000;
+    static PrintWriter log;
     Campamento campamento;
     Monitor m;
     Ninno n;
@@ -24,7 +30,14 @@ public class VentanaCampamento extends javax.swing.JFrame {
      * Creates new form VentanaCampamento
      */
     public VentanaCampamento() {
-        // CÓDIGO MAIN
+        try {
+            log = new PrintWriter(new BufferedWriter(new FileWriter("log.txt")));
+        } catch (IOException ioe) {}
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent evt){
+                onExit();
+            }
+        });
         campamento = new Campamento(AFORO);
         for (int i=0;i<N_MONITORES;i++){
             m = new Monitor(i,campamento);
@@ -445,7 +458,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)
-                        .addGap(42, 42, 42)
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(jLabel14)
@@ -492,7 +505,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 50, Short.MAX_VALUE))
+                .addGap(0, 66, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(200, 200, 200)
@@ -608,6 +621,15 @@ public class VentanaCampamento extends javax.swing.JFrame {
                 new VentanaCampamento().setVisible(true);
             }
         });
+    }
+    
+    public static void registrarLog(String cad){
+        log.println(cad);
+    }
+    public void onExit(){
+        System.out.println("Exit");
+        log.close();
+        System.exit(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
