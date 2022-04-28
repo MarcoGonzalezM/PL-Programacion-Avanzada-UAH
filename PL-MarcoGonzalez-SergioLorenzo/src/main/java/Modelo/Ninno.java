@@ -29,6 +29,12 @@ public class Ninno extends Thread{
     
     
     public void entrarCamp(){
-    
+        boolean entrada = Math.random()<0.5;
+        if (entrada){
+            campamento.entrarPuerta1(this);
+        }
+        else{
+            campamento.entrarPuerta2(this);
+        }
     }
 }

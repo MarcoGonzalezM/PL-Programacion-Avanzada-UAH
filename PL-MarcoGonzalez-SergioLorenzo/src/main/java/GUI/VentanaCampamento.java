@@ -19,13 +19,7 @@ import java.util.logging.Logger;
  */
 public class VentanaCampamento extends javax.swing.JFrame {
     
-    int AFORO = 50;
-    int N_MONITORES = 4;
-    int N_NINNOS = 20000;
     static PrintWriter log;
-    Campamento campamento;
-    Monitor m;
-    Ninno n;
     /**
      * Creates new form VentanaCampamento
      */
@@ -38,15 +32,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
                 onExit();
             }
         });
-        campamento = new Campamento(AFORO);
-        for (int i=0;i<N_MONITORES;i++){
-            m = new Monitor(i,campamento);
-            m.start();
-        }
-        for (int i=0;i<N_NINNOS;i++){
-            n = new Ninno(i,campamento);
-            n.start();
-        }
         initComponents();
     }
 

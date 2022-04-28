@@ -5,12 +5,11 @@
  */
 package Modelo;
 
-import java.util.Queue;
+import java.util.ArrayList;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,63 +17,95 @@ import java.util.logging.Logger;
  */
 public class Campamento {
     //ATRIBUTOS (privados)
-    ListaThreads colaEntrada1 , colaEntrada2;
+    private int huecosDisponibles;
+    private boolean alternancia = false;
+    private int nMonitoresP1;
+    private int nMonitoresP2;
+    ArrayList<Ninno> colaEntrada1 = new ArrayList<>();
+    ArrayList<Ninno> colaEntrada2 = new ArrayList<>();
     CountDownLatch cdl1 = new CountDownLatch(1);
     CountDownLatch cdl2 = new CountDownLatch(1);
-    Semaphore semEntrada;
-    Lock lockCola1 = new ReentrantLock();
-    Lock lockCola2 = new ReentrantLock();
+    Lock lockEntrada = new ReentrantLock();
+    Condition puerta1 = lockEntrada.newCondition();
+    Condition puerta2 = lockEntrada.newCondition();
     
     //CONSTRUCTOR
-    public Campamento(int p_aforo){
-        //colaEntrada1 = new ListaThreads() por terminar
-        //colaEntrada2 = new ListaThreads() por terminar
-        semEntrada= new Semaphore(p_aforo, true);
+    public Campamento(int p_huecosDisponibles){
+        huecosDisponibles = p_huecosDisponibles;
     }
-
-    public void llegaNinno(Ninno ninno){
-        boolean entrada = Math.random()<0.5; 
-        if (entrada){
-            colaEntrada1.meter(ninno);
-            try {
-                cdl1.await();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
+    public void entrarPuerta1(Ninno ninno){
+        lockEntrada.lock();
+        try{
+            colaEntrada1.add(ninno);
+            while(huecosDisponibles == 0)
+            {
+                puerta1.await();
             }
-            if (!(semEntrada.tryAcquire())&& (colaEntrada1.getLongitud()>0) && (colaEntrada2.getLongitud()>0)) {
-                lockCola1.lock();
-            }
-            try {
-                semEntrada.acquire();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            lockCola2.unlock();
-            colaEntrada1.sacar(ninno);
-        } else {
-            colaEntrada2.meter(ninno);
-            try {
-                cdl2.await();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (!(semEntrada.tryAcquire())&& (colaEntrada1.getLongitud()>0) && (colaEntrada2.getLongitud()>0)) {
-                lockCola2.lock();
-            }
-            try {
-                semEntrada.acquire();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            lockCola1.unlock();
-            colaEntrada2.sacar(ninno);
+            colaEntrada1.remove(ninno);
+            huecosDisponibles--;
+            
         }
-        
-        
+        catch(InterruptedException e){}
+        finally{
+            lockEntrada.unlock();
+        }
+    }
+    public void entrarPuerta2(Ninno ninno){
+        lockEntrada.lock();
+        try{
+            colaEntrada2.add(ninno);
+            while(huecosDisponibles == 0)
+            {
+                puerta2.await();
+            }
+            colaEntrada2.remove(ninno);
+            huecosDisponibles--;
+            
+        }
+        catch(InterruptedException e){}
+        finally{
+            lockEntrada.unlock();
+        }
+    }
+    public void salir_museo(Ninno ninno){
+        lockEntrada.lock();
+        try {
+            huecosDisponibles++;
+            if(colaEntrada1.size() > 0 && colaEntrada2.size() > 0){
+                //ninnos esperando en las dos entradas (alternancia)
+                if(!alternancia)
+                {
+                    puerta2.signal();
+                    alternancia = true;
+                }
+                else{
+                    puerta1.signal();
+                    alternancia = false;
+                }
+            }
+            else{
+                if(colaEntrada1.size() > 0)
+                    puerta1.signal();
+                else if (colaEntrada2.size() > 0)
+                    puerta2.signal();
+            }
+        } finally {
+            lockEntrada.unlock();
+        }
     }
     
-    public void abrirCamp(Monitor mon){
-        
+    public synchronized void abrirCamp(Monitor mon, boolean puerta){
+        //sepparar en abrir camp1 y camp2
     }
+
+    public int getnMonP1() {
+        return nMonitoresP1;
+    }
+
+    public int getnMonP2() {
+        return nMonitoresP2;
+    }
+    
+    
 
 }
