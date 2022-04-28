@@ -15,21 +15,45 @@ public class Monitor extends Thread{
     private Campamento campamento;
     private int nMonitores;
 
-    public Monitor(int p_id, Campamento p_campamento, int p_nMonitores) {
+    public Monitor(int p_id, int p_nMonitores, int contadorActividades, Campamento p_campamento) {
         this.id = "" + p_id;
         this.campamento = p_campamento;
         this.nMonitores = p_nMonitores;
     }
     
-    public void abrirEntrada(){
+    public synchronized void abrirEntrada(){
         boolean entrada = Math.random()<0.5;
         if(entrada){
-            campamento.abrirCamp(this, entrada!=campamento.getnMonP1()<nMonitores-1);
+            if (campamento.getnMonP1()<nMonitores-1) {
+                campamento.abrirCamp2(this);
+            }
+            else {
+                campamento.abrirCamp1(this);
+            }
         }
         else {
-            campamento.abrirCamp(this, entrada!=campamento.getnMonP2()<nMonitores-1);
-        }
+            if (campamento.getnMonP2()<nMonitores-1) {
+                campamento.abrirCamp1(this);
+            }
+            else {
+                campamento.abrirCamp2(this);
+            }        }
+    }
+    
+    public synchronized void seleccionarActividad(){
+        int actividades[] = {0,1,2};
+        int actividad = actividades[(int) (actividades.length * Math.random())];
+        campamento.reservaActividad(actividad);
+
     }
 
+    public String getMiId() {
+        return id;
+    }
+
+    public void run(){
+        
+        abrirEntrada();
+    }
 
 }

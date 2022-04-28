@@ -12,21 +12,19 @@ package Modelo;
 public class Ninno extends Thread{
     //ATRIBUTOS (privados)
     private String id;
-    private int cont_actividades;
+    private int contActividades;
     private Campamento campamento;
     
-    public Ninno(int p_id, Campamento p_campamento){
+    public Ninno(int p_id, int p_contActividades, Campamento p_campamento){
         id = ""+100000+p_id;
         id = "N"+id.substring(1);
-        cont_actividades = 0;
+        contActividades = p_contActividades;
         campamento = p_campamento;
     }
 
     public String getMiId() {
         return id;
     }
-    
-    
     
     public void entrarCamp(){
         boolean entrada = Math.random()<0.5;
@@ -36,5 +34,30 @@ public class Ninno extends Thread{
         else{
             campamento.entrarPuerta2(this);
         }
+    }
+    
+    public void seleccionarActividad(){
+        boolean meriendaDisp = contActividades<=12;
+        int k=0;
+        if (meriendaDisp) k=1;
+        int actividad = (int) ((2 + k) * Math.random());
+        switch (actividad){
+            case 0 -> contActividades-=campamento.tirolina(this);
+            // case 1 -> contActividades-=campamento.soga(this);
+            // case 2 -> contActividades-=campamento.merienda(this);
+        }
+        //campamento.zonaComun(this);
+    }
+    
+    public void salirCamp(){
+        campamento.salirCampamento(this);
+    }
+    
+    public void run(){
+    entrarCamp();
+    while (contActividades>0){
+        seleccionarActividad();
+    }
+    salirCamp();
     }
 }

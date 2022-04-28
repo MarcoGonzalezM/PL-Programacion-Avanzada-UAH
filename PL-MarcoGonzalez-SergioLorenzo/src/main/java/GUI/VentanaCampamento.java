@@ -1,11 +1,8 @@
 package GUI;
 
-import Modelo.*;
+import Modelo.Campamento;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,21 +15,26 @@ import java.util.logging.Logger;
  * @author marco
  */
 public class VentanaCampamento extends javax.swing.JFrame {
-    
-    static PrintWriter log;
+    private final int AFORO = 50;
+    private final int MONITORES_MERIENDA = 2, MONITORES_TIROLINA = 1, MONITORES_SOGA = 1;
+    private static Generador generador;
+    private static Pintor pintor;
+    private static Escritor escritor;
+    private Campamento campamento;
     /**
      * Creates new form VentanaCampamento
      */
     public VentanaCampamento() {
-        try {
-            log = new PrintWriter(new BufferedWriter(new FileWriter("log.txt")));
-        } catch (IOException ioe) {}
+        initComponents();
+        campamento = new Campamento(AFORO, MONITORES_MERIENDA, MONITORES_TIROLINA, MONITORES_SOGA);
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent evt){
                 onExit();
             }
         });
-        initComponents();
+        generador = new Generador(campamento);
+        pintor = new Pintor(campamento, jTextField1,jTextField2,jTextField3,jTextField4,jTextField5,jTextField6,jTextField7,jTextField8,jTextField9,jTextField10,jTextField11,jTextField12,jTextField13,jTextField14,jTextField15,jTextField16,jTextField17,jTextField18);
+        escritor = new Escritor();
     }
 
     /**
@@ -97,11 +99,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jTextField2.setEditable(false);
         jTextField2.setText("jTextField2");
@@ -501,10 +498,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -604,16 +597,16 @@ public class VentanaCampamento extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaCampamento().setVisible(true);
+                pintor.start();
+                escritor.start();
+                generador.start();
             }
         });
     }
     
-    public static void registrarLog(String cad){
-        log.println(cad);
-    }
     public void onExit(){
         System.out.println("Exit");
-        log.close();
+        escritor.close();
         System.exit(0);
     }
 
