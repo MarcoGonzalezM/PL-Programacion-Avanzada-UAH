@@ -26,21 +26,20 @@ public class Campamento {
     private boolean alternancia = false;
     private int nMonitoresP1 = 0, nMonitoresP2 = 0, nMonitoresMerienda = 0, nMonitoresTirolina = 0, nMonitoresSoga = 0;
     private int nMonitoresDesMer, nMonitoresDesTir, nMonitoresDesSoga;
-    private int estadoTirolina = 0;
-    ArrayList<Ninno> colaEntrada1 = new ArrayList<>();
-    ArrayList<Ninno> colaEntrada2 = new ArrayList<>();
-    ArrayList<Ninno> ninnoTirolina = new ArrayList<>();
-    ArrayList<Ninno> monTirolina = new ArrayList<>();
-    Queue<Ninno> colaTirolina = new ConcurrentLinkedQueue();
-    Queue<Ninno> colaSoga = new ConcurrentLinkedQueue();
-    Queue<Ninno> colaMerendero = new ConcurrentLinkedQueue();
-    CountDownLatch cdl1 = new CountDownLatch(1);
-    CountDownLatch cdl2 = new CountDownLatch(1);
-    Lock lockEntrada = new ReentrantLock();
-    Lock lockTirolina = new ReentrantLock();
-    Condition monitorTirolina = lockTirolina.newCondition();
-    Condition puerta1 = lockEntrada.newCondition();
-    Condition puerta2 = lockEntrada.newCondition();
+    private int[] actividades = {0,1,2};
+    private Tirolina tirolina = new Tirolina();
+    private Entrada entrada = new Entrada();
+    private ZonaComun zonaComun = new ZonaComun();
+    private Merendero merendero = new Merendero();
+    private Soga soga = new Soga();
+    private ArrayList<Ninno> colaEntrada1 = new ArrayList<>();
+    private ArrayList<Ninno> colaEntrada2 = new ArrayList<>();
+    private Queue<Ninno> colaMerendero = new ConcurrentLinkedQueue();
+    private CountDownLatch cdl1 = new CountDownLatch(1);
+    private CountDownLatch cdl2 = new CountDownLatch(1);
+    private Lock lockEntrada = new ReentrantLock();
+    private Condition puerta1 = lockEntrada.newCondition();
+    private Condition puerta2 = lockEntrada.newCondition();
     
     //CONSTRUCTOR
     public Campamento(int p_huecosDisponibles, int p_nMonitoresDesMer, int p_nMonitoresDesTir, int p_nMonitoresDesSoga){
@@ -154,43 +153,46 @@ public class Campamento {
         Escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 2");
     }
     
-    public int tirolina(Ninno ninno){
-        colaTirolina.offer(ninno);
-        Escritor.addMsg(ninno.getMiId() + " se pone a la cola de la TIROLINA");
-        lockTirolina.lock();
-        try {
-            while (monTirolina.size()==0){
-                monitorTirolina.await();
-            }
-            colaTirolina.poll();
-            ninnoTirolina.add(ninno);
-            estadoTirolina++;
-            sleep(1000);
-            estadoTirolina++;
-            sleep(3000);
-            estadoTirolina++;
-            sleep(500);
-            estadoTirolina=0;
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ninnoTirolina.remove(ninno);
-        lockTirolina.unlock();
-        Escritor.addMsg(ninno.getMiId() + " abandona la TIROLINA");
-        return 1;
+    public void usarTirolina(Ninno ninno){
+        tirolina.tirolina(ninno);
     }
     
-    public void tirolina(Monitor mon){
-        monitorTirolina.signal();
-        Escritor.addMsg(mon.getMiId() + " llega a la TIROLINA");
+    public void accederTirolina(Monitor mon){
+        tirolina.tirolina(mon);
     }
     
-    public void reservaActividad(int actividad){
+    public void usarSoga(Ninno ninno){
+        soga.soga(ninno);
+    }
+    
+    public void accederSoga(Monitor mon){
+        soga.soga(mon);
+    }
+    
+    public void usarMerendero(Ninno ninno){
+        merendero.merendar(ninno);
+    }
+    
+    public void accederMerendero(Monitor mon){
+        merendero.merendero(mon);
+    }
+
+    public void usarZonaComun(Ninno ninno){
+        zonaComun.descansar(ninno);
+    }
+    
+    public void accederZonaComun(Monitor mon){
+        zonaComun.descansar(mon);
+    }
+    
+    public synchronized int reservaActividad(){
+        int actividad = actividades[(int) (actividades.length * Math.random())];
         switch (actividad){
-            // case 0 -> contActividades-=campamento.soga(this);
-            // case 1 -> contActividades-=campamento.soga(this);
-            // case 2 -> contActividades-=campamento.merienda(this);
+            case 0 -> nMonitoresDesMer-=1;
+            case 1 -> nMonitoresDesTir-=1;
+            case 2 -> nMonitoresDesSoga-=1;
         }
+        return actividad;
     }
 
     public int getnMonP1() {
@@ -212,7 +214,7 @@ public class Campamento {
     public int getnMonitoresSoga() {
         return nMonitoresSoga;
     }
-
+    
     public int getnMonitoresDesMer() {
         return nMonitoresDesMer;
     }
@@ -243,11 +245,7 @@ public class Campamento {
     }
     
     public String getColaT() {
-        String msg = "";
-        for (Ninno ninno:colaTirolina){
-            msg += ninno.getMiId();
-        }
-        return msg;
+        return tirolina.getCola();
     }
     
     

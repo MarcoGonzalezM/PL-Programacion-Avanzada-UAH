@@ -42,15 +42,19 @@ public class Ninno extends Thread{
         if (meriendaDisp) k=1;
         int actividad = (int) ((2 + k) * Math.random());
         switch (actividad){
-            case 0 -> contActividades-=campamento.tirolina(this);
-            // case 1 -> contActividades-=campamento.soga(this);
-            // case 2 -> contActividades-=campamento.merienda(this);
+            case 0 -> campamento.usarTirolina(this);
+            case 1 -> campamento.usarSoga(this);
+            case 2 -> campamento.usarMerendero(this);
         }
-        //campamento.zonaComun(this);
+        campamento.usarZonaComun(this);
     }
     
     public void salirCamp(){
         campamento.salirCampamento(this);
+    }
+    
+    public void substractActividad(int num){
+        contActividades-=num;
     }
     
     public void run(){
