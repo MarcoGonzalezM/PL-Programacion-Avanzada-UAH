@@ -18,7 +18,7 @@ import java.util.logging.*;
  */
 public class Escritor extends Thread{
     private PrintWriter log;
-    private static Queue<String> colaMsg;
+    private static ConcurrentLinkedQueue<String> colaMsg;
     
     public Escritor(){
         try {
@@ -37,7 +37,9 @@ public class Escritor extends Thread{
     }
     
     public void print(){
-        log.println(colaMsg.poll());
+        if (!colaMsg.isEmpty()){
+            log.println(colaMsg.poll());
+        }
     }
     
     public void close(){

@@ -23,7 +23,7 @@ public class Generador extends Thread{
     }
     @Override
     public void run(){
-        for (int i=0;i<N_MONITORES;i++){
+        for (int i=1;i<=N_MONITORES;i++){
             m = new Monitor(i,N_MONITORES, N_ACTIVIDADES_MONITORES,campamento);
             m.start();
         }

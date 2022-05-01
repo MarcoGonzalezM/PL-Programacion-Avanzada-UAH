@@ -16,7 +16,7 @@ public class Monitor extends Thread{
     private int nMonitores, contadorActividades, actividadesHastaDescanso;
 
     public Monitor(int p_id, int p_nMonitores, int p_contadorActividades, Campamento p_campamento) {
-        id = "" + p_id;
+        id = "M" + p_id;
         campamento = p_campamento;
         nMonitores = p_nMonitores;
         contadorActividades = p_contadorActividades;
@@ -39,18 +39,26 @@ public class Monitor extends Thread{
             }
             else {
                 campamento.abrirCamp2(this);
-            }        }
+            }        
+        }
     }
 
     public String getMiId() {
         return id;
     }
 
+    public int getContadorActividades() {
+        return contadorActividades;
+    }
+    
+    public void substractActividad(){
+        contadorActividades--;
+    }
+
     public void run() {
         abrirEntrada();
         int actividad = campamento.reservaActividad();
         while (true) {
-            if (contadorActividades > 0) {
                 switch (actividad) {
                     case 0 ->
                         campamento.accederMerendero(this);
@@ -59,11 +67,8 @@ public class Monitor extends Thread{
                     case 2 ->
                         campamento.accederSoga(this);
                 }
-                contadorActividades--;
-            } else {
-                campamento.accederZonaComun(this);
-                contadorActividades = actividadesHastaDescanso;
-            }
+            campamento.accederZonaComun(this);
+            contadorActividades = actividadesHastaDescanso;
         }
     }
 }

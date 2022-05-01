@@ -6,6 +6,7 @@
 package GUI;
 
 import Modelo.Campamento;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
@@ -36,7 +37,11 @@ public class Pintor extends Thread{
     private JTextField monitoresZC;
     private JTextField ninnosZC;
 
-    public Pintor(Campamento campamento,JTextField colaEntrada1, JTextField colaEntrada2, JTextField colaTirolina, JTextField monitorTirolina, JTextField inicioTirolina, JTextField dentroTirolina, JTextField finTirolina, JTextField colaSoga, JTextField monitorSoga, JTextField equipoASoga, JTextField equipoBSoga, JTextField colaMerendero, JTextField monitorMerendero, JTextField bandejasSucias, JTextField bandejasLimpias, JTextField dentroMerendero, JTextField monitoresZC, JTextField ninnosZC) {
+    public Pintor(Campamento campamento,JTextField colaEntrada1, JTextField colaEntrada2, JTextField colaTirolina, 
+            JTextField monitorTirolina, JTextField inicioTirolina, JTextField dentroTirolina, JTextField finTirolina, 
+            JTextField colaSoga, JTextField monitorSoga, JTextField equipoASoga, JTextField equipoBSoga, 
+            JTextField colaMerendero, JTextField monitorMerendero, JTextField bandejasSucias, 
+            JTextField bandejasLimpias, JTextField dentroMerendero, JTextField monitoresZC, JTextField ninnosZC) {
         this.campamento = campamento;
         this.colaEntrada1 = colaEntrada1;
         this.colaEntrada2 = colaEntrada2;
@@ -62,19 +67,39 @@ public class Pintor extends Thread{
         colaEntrada1.setText(campamento.getCola1());
         colaEntrada2.setText(campamento.getCola2());
         colaTirolina.setText(campamento.getColaT());
-        monitorTirolina = monitorTirolina;
-        inicioTirolina = inicioTirolina;
-        dentroTirolina = dentroTirolina;
-        finTirolina = finTirolina;
-        colaSoga = colaSoga;
-        monitorSoga = monitorSoga;
-        equipoASoga = equipoASoga;
-        equipoBSoga = equipoBSoga;
-        colaMerendero = colaMerendero;
-        monitorMerendero = monitorMerendero;
-        bandejasSucias = bandejasSucias;
-        bandejasLimpias = bandejasLimpias;
-        dentroMerendero = dentroMerendero;
+        monitorTirolina.setText(campamento.getMonTirolina());
+        int estadoTirolina = campamento.getEstadoTirolina();
+        switch(estadoTirolina){
+            case 0-> {
+                inicioTirolina.setText("");
+                dentroTirolina.setText("");
+                finTirolina.setText("");
+            }
+                case 1->{
+                inicioTirolina.setText(campamento.getNinnoTirolina());
+                dentroTirolina.setText("");
+                finTirolina.setText("");
+            }
+                case 2->{
+                inicioTirolina.setText("");
+                dentroTirolina.setText(campamento.getNinnoTirolina());
+                finTirolina.setText("");
+            }
+                case 3->{
+                inicioTirolina.setText("");
+                dentroTirolina.setText("");
+                finTirolina.setText(campamento.getNinnoTirolina());
+            }
+        }
+        colaSoga.setText(campamento.getColaS());
+        monitorSoga.setText(campamento.getMonSoga());
+        equipoASoga.setText(campamento.getEquipoA());
+        equipoBSoga.setText(campamento.getEquipoB());
+        colaMerendero.setText(campamento.getColaMerendero());
+        monitorMerendero.setText(campamento.getMonMerendero());
+        bandejasSucias.setText(""+campamento.getBandSucias());
+        bandejasLimpias.setText(""+campamento.getBandLimpias());
+        dentroMerendero.setText(campamento.getNinnoMerendero());
         monitoresZC = monitoresZC;
         ninnosZC = ninnosZC;
     }
