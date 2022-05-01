@@ -35,18 +35,18 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField3" min="-2" pref="379" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldColaSoga" min="-2" pref="379" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField10" alignment="0" min="-2" pref="379" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldColaTirolina" alignment="0" min="-2" pref="379" max="-2" attributes="0"/>
                                   <Component id="jLabel11" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel13" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
-                                          <Component id="jTextField9" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldMonTirolina" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -58,11 +58,11 @@
                                               <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="jTextField8" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldPrepTirolina" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jTextField7" min="-2" pref="95" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldEnTirolina" min="-2" pref="95" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jTextField11" min="-2" pref="89" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldFinTirolina" min="-2" pref="89" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -71,11 +71,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jTextField6" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldMonSoga" min="-2" pref="107" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                                   <Component id="jLabel17" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                                   <Component id="jLabel18" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jTextField12" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldMonZonaComun" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -84,12 +84,12 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="jTextField5" min="-2" pref="162" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldEquipoB" min="-2" pref="162" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jTextField4" min="-2" pref="163" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldEquipoA" min="-2" pref="163" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -97,7 +97,7 @@
                                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel19" min="-2" pref="41" max="-2" attributes="0"/>
-                                          <Component id="jTextField13" min="-2" pref="740" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldNinnoZonaComun" min="-2" pref="740" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -105,29 +105,29 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel21" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jTextField15" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldMonMerendero" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel22" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jTextField16" alignment="0" min="-2" pref="740" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldNinnoMerendero" alignment="0" min="-2" pref="740" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel20" min="-2" pref="41" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextField14" max="32767" attributes="0"/>
+                              <Component id="jTextFieldColaMerendero" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel25" min="-2" pref="62" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jLabel23" min="-2" pref="41" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextField17" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldLimpias" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel24" min="-2" pref="41" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextField18" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldSucias" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -155,20 +155,20 @@
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldColaSoga" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldColaTirolina" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldEquipoA" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldEquipoB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldMonSoga" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -184,10 +184,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldPrepTirolina" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldMonTirolina" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldEnTirolina" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldFinTirolina" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -198,12 +198,12 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField12" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldMonZonaComun" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField13" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldNinnoZonaComun" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -211,14 +211,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldColaMerendero" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField17" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldLimpias" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField18" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldSucias" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -226,12 +226,12 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField15" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldMonMerendero" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField16" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldNinnoMerendero" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
@@ -262,11 +262,11 @@
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" pref="64" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="379" max="-2" attributes="0"/>
+                              <Component id="jTextFieldEntr1" min="-2" pref="379" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField2" min="-2" pref="379" max="-2" attributes="0"/>
+                              <Component id="jTextFieldEntr2" min="-2" pref="379" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" pref="64" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -287,8 +287,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldEntr1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldEntr2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
@@ -306,19 +306,22 @@
             <Property name="text" type="java.lang.String" value="PUERTA 2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="jTextFieldEntr1">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="jTextField1"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEntr1ActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="jTextFieldEntr2">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="jTextField2"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEntr2ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -338,13 +341,13 @@
         <Property name="text" type="java.lang.String" value="MERENDERO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="jTextFieldColaSoga">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldColaSogaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -367,31 +370,31 @@
         <Property name="text" type="java.lang.String" value="Equipo B"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="jTextFieldEquipoA">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEquipoAActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="jTextFieldEquipoB">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEquipoBActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="jTextFieldMonSoga">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMonSogaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
@@ -399,13 +402,13 @@
         <Property name="text" type="java.lang.String" value="Tirolina"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField7">
+    <Component class="javax.swing.JTextField" name="jTextFieldEnTirolina">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEnTirolinaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
@@ -413,31 +416,31 @@
         <Property name="text" type="java.lang.String" value="TIROLINA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField8">
+    <Component class="javax.swing.JTextField" name="jTextFieldPrepTirolina">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField8ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPrepTirolinaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField9">
+    <Component class="javax.swing.JTextField" name="jTextFieldMonTirolina">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField9ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMonTirolinaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField10">
+    <Component class="javax.swing.JTextField" name="jTextFieldColaTirolina">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField10ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldColaTirolinaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
@@ -460,13 +463,13 @@
         <Property name="text" type="java.lang.String" value="Finalizaci&#xf3;n"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField11">
+    <Component class="javax.swing.JTextField" name="jTextFieldFinTirolina">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField11ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldFinTirolinaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
@@ -484,22 +487,22 @@
         <Property name="text" type="java.lang.String" value="Monitor"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField12">
+    <Component class="javax.swing.JTextField" name="jTextFieldMonZonaComun">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField12ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMonZonaComunActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField13">
+    <Component class="javax.swing.JTextField" name="jTextFieldNinnoZonaComun">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField13ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNinnoZonaComunActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel19">
@@ -507,13 +510,13 @@
         <Property name="text" type="java.lang.String" value="Ni&#xf1;os"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField14">
+    <Component class="javax.swing.JTextField" name="jTextFieldColaMerendero">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField14ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldColaMerenderoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel20">
@@ -526,22 +529,22 @@
         <Property name="text" type="java.lang.String" value="Monitor"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField15">
+    <Component class="javax.swing.JTextField" name="jTextFieldMonMerendero">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField15ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMonMerenderoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField16">
+    <Component class="javax.swing.JTextField" name="jTextFieldNinnoMerendero">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField16ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNinnoMerenderoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
@@ -554,13 +557,13 @@
         <Property name="text" type="java.lang.String" value="Limpias"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField17">
+    <Component class="javax.swing.JTextField" name="jTextFieldLimpias">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField17ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldLimpiasActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel24">
@@ -568,13 +571,13 @@
         <Property name="text" type="java.lang.String" value="Sucias"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField18">
+    <Component class="javax.swing.JTextField" name="jTextFieldSucias">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField18ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSuciasActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel25">
