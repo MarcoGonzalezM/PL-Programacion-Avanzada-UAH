@@ -25,9 +25,11 @@ public class Tirolina {
     private Condition actividadesMonitor = lockTirolina.newCondition();
     
     public void tirolina(Ninno ninno){
+        Paso.mirar();
         //Instruccion bloqueante A
         colaTirolina.offer(ninno);
         Escritor.addMsg(ninno.getMiId() + " se pone a la cola de la TIROLINA");
+        Paso.mirar();
         lockTirolina.lock(); //Instruccion bloqueante B
         //Instruccion desbloqueante A
         try {
@@ -36,15 +38,19 @@ public class Tirolina {
             }
             colaTirolina.poll();
             ninnoTirolina.add(ninno);
+            Paso.mirar();
             estadoTirolina++;
             Escritor.addMsg(ninno.getMiId() + " se empieza a preparar en la TIROLINA");
             sleep(1000);
             estadoTirolina++;
-            Escritor.addMsg(ninno.getMiId() + " se monta en la TIROLINA");
+            Paso.mirar();
             sleep(3000);
+            Escritor.addMsg(ninno.getMiId() + " se monta en la TIROLINA");
+            Paso.mirar();
             estadoTirolina++;
             Escritor.addMsg(ninno.getMiId() + " llega al fin de la TIROLINA");
             sleep(500);
+            Paso.mirar();
             estadoTirolina=0;
             ninnoTirolina.remove(ninno);
             ninno.substractActividad(estadoTirolina);
@@ -59,14 +65,17 @@ public class Tirolina {
     }
     
     public void tirolina(Monitor mon) {
+        Paso.mirar();
         lockTirolina.lock();
         try {
             monTirolina.add(mon);
+            Paso.mirar();
             monitorTirolina.signal();
             Escritor.addMsg(mon.getMiId() + " llega a la TIROLINA");
             while (mon.getContadorActividades()>0){
                 actividadesMonitor.await();
             }
+            Paso.mirar();
             monTirolina.remove(mon);
             Escritor.addMsg(mon.getMiId() + " abandona la TIROLINA");
         } catch (InterruptedException ex) {

@@ -7,8 +7,6 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Queue;
-import java.util.concurrent.*;
 
 /**
  *
@@ -78,11 +76,11 @@ public class Campamento {
     }
 
     public void usarZonaComun(Ninno ninno){
-        //zonaComun.descansar(ninno);
+        zonaComun.descansar(ninno);
     }
     
     public void accederZonaComun(Monitor mon){
-        //zonaComun.descansar(mon);
+        zonaComun.descansar(mon);
     }
     
     public synchronized int reservaActividad() {
@@ -188,6 +186,14 @@ public class Campamento {
 
     public String getMonMerendero() {
         return merendero.getMon();
+    }
+
+    public String getNinnoZC() {
+        return zonaComun.getNinno();
+    }
+
+    public String getMonZC() {
+        return zonaComun.getMon();
     }
 
 }

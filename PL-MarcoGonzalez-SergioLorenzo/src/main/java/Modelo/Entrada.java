@@ -37,8 +37,10 @@ public class Entrada {
     
     public void entrarPuerta1(Ninno ninno){
         try {
+            Paso.mirar();
             colaEntrada1.add(ninno);
             Escritor.addMsg(ninno.getMiId() + " entra a la cola de entrada 1");
+            Paso.mirar();
             cdl1.await();
         } catch (InterruptedException ex) {
             Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,6 +51,7 @@ public class Entrada {
             {
                 puerta1.await();
             }
+            Paso.mirar();
             colaEntrada1.remove(ninno);
             huecosDisponibles--;
         } catch(InterruptedException ex){
@@ -56,13 +59,15 @@ public class Entrada {
         }
         finally{
             lockEntrada.unlock();
-            Escritor.addMsg(ninno.getMiId() + " entra al campamento");
+            Escritor.addMsg(ninno.getMiId() + " entra al campamento por la puerta 1");
         }
     }
     public void entrarPuerta2(Ninno ninno){
         try {
+            Paso.mirar();
             colaEntrada2.add(ninno);
             Escritor.addMsg(ninno.getMiId() + " entra a la cola de entrada 2");
+            Paso.mirar();
             cdl2.await();
         } catch (InterruptedException ex) {
             Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,6 +78,7 @@ public class Entrada {
             {
                 puerta2.await();
             }
+            Paso.mirar();
             colaEntrada2.remove(ninno);
             huecosDisponibles--;
             
@@ -80,7 +86,7 @@ public class Entrada {
             Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);        
         } finally{
             lockEntrada.unlock();
-            Escritor.addMsg(ninno.getMiId() + " entra al campamento");
+            Escritor.addMsg(ninno.getMiId() + " entra al campamento por la puerta 2");
         }
     }
     public void salirCampamento(Ninno ninno){
@@ -112,6 +118,7 @@ public class Entrada {
     }
     
     public synchronized void abrirCamp1(Monitor mon){
+        Paso.mirar();
         if (cdl1.getCount()>0){
             long time = (long) (500 + 500 * Math.random());
             try {
@@ -126,6 +133,7 @@ public class Entrada {
         Escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 1");
     }
     public synchronized void abrirCamp2(Monitor mon){
+        Paso.mirar();
         if (cdl2.getCount()>0){
             long time = (long) (500 + 500 * Math.random());
             try {
@@ -162,10 +170,5 @@ public class Entrada {
             msg += ninno.getMiId() + " ";
         }
         return msg;
-    }
-    
+    }   
 }
-
-
-
-

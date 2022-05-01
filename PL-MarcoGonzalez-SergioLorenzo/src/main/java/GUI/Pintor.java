@@ -100,8 +100,8 @@ public class Pintor extends Thread{
         bandejasSucias.setText(""+campamento.getBandSucias());
         bandejasLimpias.setText(""+campamento.getBandLimpias());
         dentroMerendero.setText(campamento.getNinnoMerendero());
-        monitoresZC = monitoresZC;
-        ninnosZC = ninnosZC;
+        monitoresZC.setText(campamento.getMonZC());
+        ninnosZC.setText(campamento.getNinnoZC());
     }
     
     public void run(){

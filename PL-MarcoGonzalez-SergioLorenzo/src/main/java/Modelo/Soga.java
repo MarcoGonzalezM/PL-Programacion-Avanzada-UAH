@@ -36,6 +36,7 @@ public class Soga {
     }
     
     public void soga(Ninno ninno){
+        Paso.mirar();
         if (colaSoga.size()+colaSogaEquipoA.size()+colaSogaEquipoB.size()<tamEquipo*2){
             try {
                 colaSoga.put(ninno);
@@ -43,6 +44,7 @@ public class Soga {
                 Logger.getLogger(Soga.class.getName()).log(Level.SEVERE, null, ex);
             }
             Escritor.addMsg(ninno.getMiId() + " se pone a la cola de SOGA");
+            Paso.mirar();
             lockSoga.lock();
             try{
                 ninnosSuficientes.signal();
@@ -65,8 +67,10 @@ public class Soga {
     }
     
     public void soga(Monitor mon) {
+        Paso.mirar();
         monSoga.add(mon);
         Escritor.addMsg(mon.getMiId() + " llega a la SOGA");
+        Paso.mirar();
         while (mon.getContadorActividades() > 0) {
             lockSoga.lock();
             try {
@@ -80,6 +84,7 @@ public class Soga {
                 lockSoga.unlock();
             }
             for (int i = 0; i < tamEquipo * 2; i++) {
+                Paso.mirar();
                 Ninno n;
                 try {
                     n = colaSoga.take();
@@ -98,12 +103,13 @@ public class Soga {
                 }
             }
             Escritor.addMsg(mon.getMiId() + " inicia el enfrentamiento en SOGA");
+            Paso.mirar();
             try {
                 sleep(7000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Soga.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            Paso.mirar();
             if (Math.random() < 0.5) {
                 Escritor.addMsg(mon.getMiId() + " termina el enfrentamiento en SOGA a favor del EQUIPO A");
                 for (Ninno ninno : colaSogaEquipoA) {
@@ -129,6 +135,7 @@ public class Soga {
                     Escritor.addMsg(ninno.getMiId() + " gana en SOGA");
                 }
             }
+            Paso.mirar();
             try {
                 barreraSoga.await();
             } catch (InterruptedException ex) {
@@ -138,6 +145,8 @@ public class Soga {
             }
             mon.substractActividad();
         }
+        monSoga.remove(mon);
+        Paso.mirar();
     }
     
     public String getCola(){

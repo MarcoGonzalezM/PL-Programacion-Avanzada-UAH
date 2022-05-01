@@ -34,16 +34,22 @@ public class Merendero {
     }
     
     public void merendar (Ninno ninno){
+        Paso.mirar();
         colaMerendero.offer(ninno);
         Escritor.addMsg(ninno.getMiId() + " se pone a la cola de MERENDERO");
+        Paso.mirar();
         try {
             semMerienda.acquire();
             colaMerendero.remove(ninno);
             ninnoMerendero.add(ninno);
-            bandLimpias.extraerBandeja(); 
+            Paso.mirar();
+            bandLimpias.extraerBandeja();
+            Paso.mirar();
             Escritor.addMsg(ninno.getMiId() + " se sienta a comer en el MERENDERO");
             sleep(7000);
+            Paso.mirar();
             bandSucias.annadirBandeja();
+            Paso.mirar();
             ninnoMerendero.remove(ninno);
             Escritor.addMsg(ninno.getMiId() + " abandona el MERENDERO");
         } catch (InterruptedException ex) {
@@ -54,18 +60,24 @@ public class Merendero {
     }
     
     public void merendero (Monitor mon){
+        Paso.mirar();
         monMerendero.add(mon);
         Escritor.addMsg(mon.getMiId() + " llega al MERENDERO");
+        Paso.mirar();
         while(mon.getContadorActividades() > 0){
             bandSucias.extraerBandeja();
+            Paso.mirar();
             try {
                 sleep((int) (3000 + 2000*Math.random()));
             } catch (InterruptedException ex) {
                 Logger.getLogger(Merendero.class.getName()).log(Level.SEVERE, null, ex);
             }
+            Paso.mirar();
             bandLimpias.annadirBandeja();
             mon.substractActividad();
+            Escritor.addMsg(mon.getMiId() + " limpia una bandeja");
         }
+        Paso.mirar();
         monMerendero.remove(mon);
         Escritor.addMsg(mon.getMiId() + " abandona el MERENDERO");
     }
