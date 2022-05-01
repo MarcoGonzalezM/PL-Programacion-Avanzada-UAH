@@ -101,22 +101,24 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel1.setText("ENTRADA AL CAMPAMENTO");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel2.setText("PUERTA 2");
 
         jTextFieldEntr1.setEditable(false);
-        jTextFieldEntr1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldEntr1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldEntr1.setText("colaEntrada1");
 
         jTextFieldEntr2.setEditable(false);
-        jTextFieldEntr2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldEntr2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldEntr2.setText("colaEntrada2");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel5.setText("PUERTA 1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -128,7 +130,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldEntr1, javax.swing.GroupLayout.PREFERRED_SIZE, 933, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldEntr2, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,40 +150,40 @@ public class VentanaCampamento extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldEntr1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldEntr2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldEntr2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldEntr1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel4.setText("CAMPAMENTO");
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel3.setText("MERENDERO");
 
         jTextFieldColaSoga.setEditable(false);
-        jTextFieldColaSoga.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldColaSoga.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldColaSoga.setText("colaSoga");
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel6.setText("Cola");
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel7.setText("Monitor");
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel8.setText("Equipo A");
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel9.setText("Equipo B");
 
         jTextFieldEquipoA.setEditable(false);
-        jTextFieldEquipoA.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldEquipoA.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldEquipoA.setText("EquipoA");
 
         jTextFieldEquipoB.setEditable(false);
-        jTextFieldEquipoB.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldEquipoB.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldEquipoB.setText("jTextFieldSoga");
         jTextFieldEquipoB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +192,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
         });
 
         jTextFieldMonSoga.setEditable(false);
-        jTextFieldMonSoga.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldMonSoga.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldMonSoga.setText("jTextFieldSoga");
         jTextFieldMonSoga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,11 +200,11 @@ public class VentanaCampamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel10.setText("Tirolina");
 
         jTextFieldEnTirolina.setEditable(false);
-        jTextFieldEnTirolina.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldEnTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldEnTirolina.setText("jTextFieldSoga");
         jTextFieldEnTirolina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,11 +212,11 @@ public class VentanaCampamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel11.setText("TIROLINA");
 
         jTextFieldPrepTirolina.setEditable(false);
-        jTextFieldPrepTirolina.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldPrepTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldPrepTirolina.setText("jTextFieldSoga");
         jTextFieldPrepTirolina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,7 +225,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
         });
 
         jTextFieldMonTirolina.setEditable(false);
-        jTextFieldMonTirolina.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldMonTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldMonTirolina.setText("jTextFieldSoga");
         jTextFieldMonTirolina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,23 +234,23 @@ public class VentanaCampamento extends javax.swing.JFrame {
         });
 
         jTextFieldColaTirolina.setEditable(false);
-        jTextFieldColaTirolina.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldColaTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldColaTirolina.setText("colaTirolina");
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel12.setText("Cola");
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel13.setText("Monitor");
 
-        jLabel14.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel14.setText("Preparación");
 
-        jLabel15.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel15.setText("Finalización");
 
         jTextFieldFinTirolina.setEditable(false);
-        jTextFieldFinTirolina.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldFinTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldFinTirolina.setText("jTextFieldSoga");
         jTextFieldFinTirolina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,17 +258,17 @@ public class VentanaCampamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel16.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel16.setText("SOGA");
 
-        jLabel17.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel17.setText("ZONA COMÚN");
 
-        jLabel18.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel18.setText("Monitor");
 
         jTextFieldMonZonaComun.setEditable(false);
-        jTextFieldMonZonaComun.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldMonZonaComun.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldMonZonaComun.setText("jTextFieldSoga");
         jTextFieldMonZonaComun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,7 +277,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
         });
 
         jTextFieldNinnoZonaComun.setEditable(false);
-        jTextFieldNinnoZonaComun.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldNinnoZonaComun.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldNinnoZonaComun.setText("jTextFieldSoga");
         jTextFieldNinnoZonaComun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,11 +285,11 @@ public class VentanaCampamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel19.setText("Niños");
 
         jTextFieldColaMerendero.setEditable(false);
-        jTextFieldColaMerendero.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldColaMerendero.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldColaMerendero.setText("jTextFieldSoga");
         jTextFieldColaMerendero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,14 +297,14 @@ public class VentanaCampamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel20.setText("Cola");
 
-        jLabel21.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel21.setText("Monitor");
 
         jTextFieldMonMerendero.setEditable(false);
-        jTextFieldMonMerendero.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldMonMerendero.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldMonMerendero.setText("jTextFieldSoga");
         jTextFieldMonMerendero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,7 +313,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
         });
 
         jTextFieldNinnoMerendero.setEditable(false);
-        jTextFieldNinnoMerendero.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldNinnoMerendero.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldNinnoMerendero.setText("jTextFieldSoga");
         jTextFieldNinnoMerendero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,14 +321,14 @@ public class VentanaCampamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel22.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel22.setText("Niños");
 
-        jLabel23.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel23.setText("Limpias");
 
         jTextFieldLimpias.setEditable(false);
-        jTextFieldLimpias.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldLimpias.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldLimpias.setText("jTextFieldSoga");
         jTextFieldLimpias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,17 +336,17 @@ public class VentanaCampamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel24.setText("Sucias");
 
         jTextFieldSucias.setEditable(false);
-        jTextFieldSucias.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextFieldSucias.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldSucias.setText("jTextFieldSoga");
 
-        jLabel25.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel25.setText("Bandejas:");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jButton1.setText("Detener");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -352,7 +354,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jButton2.setText("Reanudar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,64 +368,31 @@ public class VentanaCampamento extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(249, 249, 249)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(401, 401, 401)
+                .addComponent(jLabel4)
+                .addGap(284, 284, 284)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldMonMerendero, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldNinnoMerendero, javax.swing.GroupLayout.PREFERRED_SIZE, 1642, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldMonZonaComun, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(88, 88, 88)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jTextFieldNinnoZonaComun, javax.swing.GroupLayout.PREFERRED_SIZE, 1492, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextFieldLimpias, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(99, 99, 99)
-                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(jTextFieldSucias, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(31, 31, 31)
-                                    .addComponent(jTextFieldColaMerendero, javax.swing.GroupLayout.PREFERRED_SIZE, 1680, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldMonSoga, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9))
-                                    .addGap(58, 58, 58)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextFieldEquipoB, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldEquipoA)))
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldColaSoga)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldEquipoA, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldMonSoga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(58, 58, 58)
+                                .addComponent(jTextFieldEquipoB, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldColaSoga, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldColaTirolina, javax.swing.GroupLayout.PREFERRED_SIZE, 927, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -447,28 +416,68 @@ public class VentanaCampamento extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextFieldMonTirolina, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(642, 642, 642))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldMonMerendero, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNinnoMerendero, javax.swing.GroupLayout.PREFERRED_SIZE, 1642, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldMonZonaComun, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldNinnoZonaComun, javax.swing.GroupLayout.PREFERRED_SIZE, 1492, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextFieldLimpias, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(99, 99, 99)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jTextFieldSucias, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(jTextFieldColaMerendero, javax.swing.GroupLayout.PREFERRED_SIZE, 1680, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
+                        .addGap(209, 209, 209)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel14))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldFinTirolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEnTirolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPrepTirolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -491,32 +500,20 @@ public class VentanaCampamento extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldMonSoga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jTextFieldEquipoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextFieldEquipoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel19)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(362, 362, 362)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldFinTirolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldEnTirolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPrepTirolina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(188, 188, 188)))
+                            .addComponent(jTextFieldEquipoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldMonZonaComun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -542,7 +539,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNinnoMerendero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldMonMerendero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(124, 124, 124))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
