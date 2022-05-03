@@ -1,6 +1,6 @@
 package Modelo;
 
-import GUI.Escritor;
+import Interfaz.Escritor;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -155,6 +155,9 @@ public class Soga {
             msg += ninno.getMiId() + " ";
         }
         return msg;    
+    }
+    public int cuantosNinnosCola(){
+        return colaSoga.size();
     }
     
     public String getColaEquipoA(){

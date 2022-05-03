@@ -12,13 +12,14 @@ package Modelo;
 public class Ninno extends Thread{
     //ATRIBUTOS (privados)
     private String id;
-    private int contActividades;
+    private int contActividades, totalActividades;
     private Campamento campamento;
     
     public Ninno(int p_id, int p_contActividades, Campamento p_campamento){
         id = ""+100000+p_id;
         id = "N"+id.substring(1);
         contActividades = p_contActividades;
+        totalActividades = p_contActividades;
         campamento = p_campamento;
     }
 
@@ -55,6 +56,10 @@ public class Ninno extends Thread{
     
     public void substractActividad(int num){
         contActividades-=num;
+    }
+    
+    public int actividadesRealizadas(){
+        return totalActividades - contActividades;
     }
     
     public void run(){

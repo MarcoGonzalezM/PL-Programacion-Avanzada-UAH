@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import GUI.Escritor;
+import Interfaz.Escritor;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.Queue;
@@ -104,6 +104,9 @@ public class Merendero {
             msg += ninno.getMiId() + " ";
         }
         return msg;    
+    }
+    public int cuantosNinnosMerienda(){
+        return ninnoMerendero.size();
     }
 
     public String getMon() {

@@ -1,4 +1,4 @@
-package GUI;
+package Interfaz;
 
 import Modelo.Campamento;
 import Modelo.Monitor;

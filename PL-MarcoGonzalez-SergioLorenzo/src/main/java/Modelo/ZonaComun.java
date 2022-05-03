@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import GUI.Escritor;
+import Interfaz.Escritor;
 import static java.lang.Thread.sleep;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;

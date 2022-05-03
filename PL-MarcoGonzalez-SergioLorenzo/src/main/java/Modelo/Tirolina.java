@@ -1,6 +1,6 @@
 package Modelo;
 
-import GUI.Escritor;
+import Interfaz.Escritor;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.Queue;
@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  */
 public class Tirolina {
     private int estadoTirolina = 0;
+    private int vecesUsado = 0;
     private ArrayList<Ninno> ninnoTirolina = new ArrayList<>();
     private ArrayList<Monitor> monTirolina = new ArrayList<>();
     private Queue<Ninno> colaTirolina = new ConcurrentLinkedQueue();
@@ -53,6 +54,7 @@ public class Tirolina {
             Paso.mirar();
             estadoTirolina=0;
             ninnoTirolina.remove(ninno);
+            vecesUsado++;
             ninno.substractActividad(estadoTirolina);
             monTirolina.get(0).substractActividad();
             actividadesMonitor.signal();
@@ -100,6 +102,9 @@ public class Tirolina {
         }
         return msg;
     }
+    public int cuantosNinnosCola(){
+        return colaTirolina.size();
+    }
 
     public String getMon(){
         String msg = "";
@@ -112,5 +117,11 @@ public class Tirolina {
     public int getEstadoTirolina(){
         return estadoTirolina;
     }
+
+    public int getVecesUsado() {
+        return vecesUsado;
+    }
+    
+    
     
 }
