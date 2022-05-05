@@ -25,21 +25,12 @@ public class Monitor extends Thread{
     
     public void abrirEntrada(){
         boolean entrada = Math.random()<0.5;
+        entrada = campamento.elegirEntrada(entrada, nMonitores);
         if(entrada){
-            if (campamento.getnMonP1()<nMonitores-1) {
-                campamento.abrirCamp2(this);
-            }
-            else {
-                campamento.abrirCamp1(this);
-            }
+            campamento.abrirCamp1(this);
         }
         else {
-            if (campamento.getnMonP2()<nMonitores-1) {
-                campamento.abrirCamp1(this);
-            }
-            else {
-                campamento.abrirCamp2(this);
-            }        
+            campamento.abrirCamp2(this);
         }
     }
 

@@ -25,6 +25,8 @@ public class Entrada {
     private AtomicInteger nMonitoresP1 = new AtomicInteger(0);
     private AtomicInteger nMonitoresP2 = new AtomicInteger(0);
     private boolean alternancia = false;
+    private Escritor escritor;
+    private Paso paso;
     private ArrayList<Ninno> colaEntrada1 = new ArrayList<>();
     private ArrayList<Ninno> colaEntrada2 = new ArrayList<>();
     private CountDownLatch cdl1 = new CountDownLatch(1);
@@ -33,16 +35,18 @@ public class Entrada {
     private Condition puerta1 = lockEntrada.newCondition();
     private Condition puerta2 = lockEntrada.newCondition();
     
-    public Entrada(int p_huecosDisponibles){
+    public Entrada(int p_huecosDisponibles, Escritor p_escritor, Paso p_paso){
         huecosDisponibles = p_huecosDisponibles;
+        escritor = p_escritor;
+        paso = p_paso;        
     }
     
     public void entrarPuerta1(Ninno ninno){
         try {
-            Paso.mirar();
+            paso.mirar();
             colaEntrada1.add(ninno);
-            Escritor.addMsg(ninno.getMiId() + " entra a la cola de entrada 1");
-            Paso.mirar();
+            escritor.addMsg(ninno.getMiId() + " entra a la cola de entrada 1");
+            paso.mirar();
             cdl1.await();
         } catch (InterruptedException ex) {
             Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,7 +57,7 @@ public class Entrada {
             {
                 puerta1.await();
             }
-            Paso.mirar();
+            paso.mirar();
             colaEntrada1.remove(ninno);
             huecosDisponibles--;
         } catch(InterruptedException ex){
@@ -61,15 +65,15 @@ public class Entrada {
         }
         finally{
             lockEntrada.unlock();
-            Escritor.addMsg(ninno.getMiId() + " entra al campamento por la puerta 1");
+            escritor.addMsg(ninno.getMiId() + " entra al campamento por la puerta 1");
         }
     }
     public void entrarPuerta2(Ninno ninno){
         try {
-            Paso.mirar();
+            paso.mirar();
             colaEntrada2.add(ninno);
-            Escritor.addMsg(ninno.getMiId() + " entra a la cola de entrada 2");
-            Paso.mirar();
+            escritor.addMsg(ninno.getMiId() + " entra a la cola de entrada 2");
+            paso.mirar();
             cdl2.await();
         } catch (InterruptedException ex) {
             Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,7 +84,7 @@ public class Entrada {
             {
                 puerta2.await();
             }
-            Paso.mirar();
+            paso.mirar();
             colaEntrada2.remove(ninno);
             huecosDisponibles--;
             
@@ -88,7 +92,7 @@ public class Entrada {
             Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);        
         } finally{
             lockEntrada.unlock();
-            Escritor.addMsg(ninno.getMiId() + " entra al campamento por la puerta 2");
+            escritor.addMsg(ninno.getMiId() + " entra al campamento por la puerta 2");
         }
     }
     public void salirCampamento(Ninno ninno){
@@ -115,12 +119,12 @@ public class Entrada {
             }
         } finally {
             lockEntrada.unlock();
-            Escritor.addMsg(ninno.getMiId() + " sale del campamento");
+            escritor.addMsg(ninno.getMiId() + " sale del campamento");
         }
     }
     
     public synchronized void abrirCamp1(Monitor mon){
-        Paso.mirar();
+        paso.mirar();
         if (cdl1.getCount()>0){
             long time = (long) (500 + 500 * Math.random());
             try {
@@ -129,13 +133,13 @@ public class Entrada {
                 Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
             }
             cdl1.countDown();
-            Escritor.addMsg(mon.getMiId() + " abre la puerta 1");
+            escritor.addMsg(mon.getMiId() + " abre la puerta 1");
         }
         nMonitoresP1.getAndIncrement();
-        Escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 1");
+        escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 1");
     }
     public synchronized void abrirCamp2(Monitor mon){
-        Paso.mirar();
+        paso.mirar();
         if (cdl2.getCount()>0){
             long time = (long) (500 + 500 * Math.random());
             try {
@@ -144,10 +148,10 @@ public class Entrada {
                 Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
             }
             cdl2.countDown();
-            Escritor.addMsg(mon.getMiId() + " abre la puerta 2");
+            escritor.addMsg(mon.getMiId() + " abre la puerta 2");
         }
         nMonitoresP2.getAndIncrement();
-        Escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 2");
+        escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 2");
     }
 
     public int getNMonitoresP1() {

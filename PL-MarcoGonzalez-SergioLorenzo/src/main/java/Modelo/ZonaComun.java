@@ -16,37 +16,44 @@ import java.util.logging.Logger;
  * @author marco
  */
 public class ZonaComun {
+    private Escritor escritor;
+    private Paso paso;
     private CopyOnWriteArrayList<Ninno> ninnoZonaComun = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<Monitor> monZonaComun = new CopyOnWriteArrayList<>();
 
+    public ZonaComun(Escritor p_escritor, Paso p_paso){
+        escritor = p_escritor;
+        paso = p_paso;
+    }
+    
     public void descansar(Ninno ninno){
-        Paso.mirar();
+        paso.mirar();
         ninnoZonaComun.add(ninno);
-        Escritor.addMsg(ninno.getMiId() + " inicia su descanso");
-        Paso.mirar();
+        escritor.addMsg(ninno.getMiId() + " inicia su descanso");
+        paso.mirar();
         try {
             sleep((int) (2000 + 2000*Math.random()));
         } catch (InterruptedException ex) {
             Logger.getLogger(ZonaComun.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Paso.mirar();
+        paso.mirar();
         ninnoZonaComun.remove(ninno);
-        Escritor.addMsg(ninno.getMiId() + " finaliza su descanso");
+        escritor.addMsg(ninno.getMiId() + " finaliza su descanso");
     }
     
     public void descansar(Monitor mon){
-        Paso.mirar();
+        paso.mirar();
         monZonaComun.add(mon);
-        Escritor.addMsg(mon.getMiId() + " inicia su descanso");
-        Paso.mirar();
+        escritor.addMsg(mon.getMiId() + " inicia su descanso");
+        paso.mirar();
         try {
             sleep((int) (1000 + 1000*Math.random()));
         } catch (InterruptedException ex) {
             Logger.getLogger(ZonaComun.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Paso.mirar();
+        paso.mirar();
         monZonaComun.remove(mon);
-        Escritor.addMsg(mon.getMiId() + " finaliza su descanso");
+        escritor.addMsg(mon.getMiId() + " finaliza su descanso");
     }
     
     public String getNinno(){

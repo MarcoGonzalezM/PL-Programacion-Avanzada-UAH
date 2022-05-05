@@ -16,11 +16,11 @@ import java.util.logging.Logger;
  * @author marco
  */
 public class Paso {
-    private static boolean detenido = false;
-    private static Lock lock = new ReentrantLock();
-    private static Condition detener = lock.newCondition();
+    private boolean detenido = false;
+    private Lock lock = new ReentrantLock();
+    private Condition detener = lock.newCondition();
     
-    public static void mirar(){
+    public void mirar(){
         try{
             lock.lock();
             while(detenido){
@@ -33,7 +33,7 @@ public class Paso {
         }
     }
     
-    public static void reanudar(){
+    public void reanudar(){
         try{
             lock.lock();
             detenido = false;
@@ -43,7 +43,7 @@ public class Paso {
         }
     }
    
-    public static void detener(){
+    public void detener(){
         try{
             lock.lock();
             detenido = true;

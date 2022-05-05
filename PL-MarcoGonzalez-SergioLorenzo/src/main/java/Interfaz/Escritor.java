@@ -18,7 +18,7 @@ import java.util.logging.*;
  */
 public class Escritor extends Thread{
     private PrintWriter log;
-    private static Queue<String> colaMsg;
+    private Queue<String> colaMsg;
     
     public Escritor(){
         try {
@@ -29,7 +29,7 @@ public class Escritor extends Thread{
         colaMsg = new ConcurrentLinkedQueue<String>();
     }
     
-    public static void addMsg(String msg){
+    public synchronized void addMsg(String msg){
         LocalDateTime evtTime = LocalDateTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MMMM/dd hh:mm:ss");
         msg +=" - "+dtf.format(evtTime);

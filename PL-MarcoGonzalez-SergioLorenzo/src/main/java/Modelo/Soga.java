@@ -18,6 +18,8 @@ import java.util.logging.Logger;
  */
 public class Soga {
     private int tamEquipo;
+    private Escritor escritor;
+    private Paso paso;
     private ArrayBlockingQueue<Ninno> colaSoga;
     private ArrayBlockingQueue<Ninno> colaSogaEquipoA;
     private ArrayBlockingQueue<Ninno> colaSogaEquipoB;
@@ -27,24 +29,26 @@ public class Soga {
     private Condition ninnosSuficientes = lockSoga.newCondition();
     private CyclicBarrier barreraSoga;
     
-    public Soga(int p_tamEquipo){
+    public Soga(int p_tamEquipo, Escritor p_escritor, Paso p_paso){
         tamEquipo = p_tamEquipo;
         colaSoga = new ArrayBlockingQueue(tamEquipo*2);
         colaSogaEquipoA = new ArrayBlockingQueue(tamEquipo);
         colaSogaEquipoB = new ArrayBlockingQueue(tamEquipo);
         barreraSoga = new CyclicBarrier(1+tamEquipo*2);
+        escritor = p_escritor;
+        paso = p_paso;
     }
     
     public void soga(Ninno ninno){
-        Paso.mirar();
+        paso.mirar();
         if (colaSoga.size()+colaSogaEquipoA.size()+colaSogaEquipoB.size()<tamEquipo*2){
             try {
                 colaSoga.put(ninno);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Soga.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Escritor.addMsg(ninno.getMiId() + " se pone a la cola de SOGA");
-            Paso.mirar();
+            escritor.addMsg(ninno.getMiId() + " se pone a la cola de SOGA");
+            paso.mirar();
             lockSoga.lock();
             try{
                 ninnosSuficientes.signal();
@@ -67,10 +71,10 @@ public class Soga {
     }
     
     public void soga(Monitor mon) {
-        Paso.mirar();
+        paso.mirar();
         monSoga.add(mon);
-        Escritor.addMsg(mon.getMiId() + " llega a la SOGA");
-        Paso.mirar();
+        escritor.addMsg(mon.getMiId() + " llega a la SOGA");
+        paso.mirar();
         while (mon.getContadorActividades() > 0) {
             lockSoga.lock();
             try {
@@ -84,7 +88,7 @@ public class Soga {
                 lockSoga.unlock();
             }
             for (int i = 0; i < tamEquipo * 2; i++) {
-                Paso.mirar();
+                paso.mirar();
                 Ninno n;
                 try {
                     n = colaSoga.take();
@@ -102,40 +106,40 @@ public class Soga {
                     Logger.getLogger(Soga.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            Escritor.addMsg(mon.getMiId() + " inicia el enfrentamiento en SOGA");
-            Paso.mirar();
+            escritor.addMsg(mon.getMiId() + " inicia el enfrentamiento en SOGA");
+            paso.mirar();
             try {
                 sleep(7000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Soga.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Paso.mirar();
+            paso.mirar();
             if (Math.random() < 0.5) {
-                Escritor.addMsg(mon.getMiId() + " termina el enfrentamiento en SOGA a favor del EQUIPO A");
+                escritor.addMsg(mon.getMiId() + " termina el enfrentamiento en SOGA a favor del EQUIPO A");
                 for (Ninno ninno : colaSogaEquipoA) {
                     ninno.substractActividad(2);
                     colaSogaEquipoA.remove(ninno);
-                    Escritor.addMsg(ninno.getMiId() + " gana en SOGA");
+                    escritor.addMsg(ninno.getMiId() + " gana en SOGA");
                 }
                 for (Ninno ninno : colaSogaEquipoB) {
                     ninno.substractActividad(1);
                     colaSogaEquipoB.remove(ninno);
-                    Escritor.addMsg(ninno.getMiId() + " pierde en SOGA");
+                    escritor.addMsg(ninno.getMiId() + " pierde en SOGA");
                 }
             } else {
-                Escritor.addMsg(mon.getMiId() + " termina el enfrentamiento en SOGA a favor del EQUIPO B");
+                escritor.addMsg(mon.getMiId() + " termina el enfrentamiento en SOGA a favor del EQUIPO B");
                 for (Ninno ninno : colaSogaEquipoA) {
                     ninno.substractActividad(1);
                     colaSogaEquipoA.remove(ninno);
-                    Escritor.addMsg(ninno.getMiId() + " pierde en SOGA");
+                    escritor.addMsg(ninno.getMiId() + " pierde en SOGA");
                 }
                 for (Ninno ninno : colaSogaEquipoB) {
                     ninno.substractActividad(2);
                     colaSogaEquipoB.remove(ninno);
-                    Escritor.addMsg(ninno.getMiId() + " gana en SOGA");
+                    escritor.addMsg(ninno.getMiId() + " gana en SOGA");
                 }
             }
-            Paso.mirar();
+            paso.mirar();
             try {
                 barreraSoga.await();
             } catch (InterruptedException ex) {
@@ -146,7 +150,7 @@ public class Soga {
             mon.substractActividad();
         }
         monSoga.remove(mon);
-        Paso.mirar();
+        paso.mirar();
     }
     
     public String getCola(){

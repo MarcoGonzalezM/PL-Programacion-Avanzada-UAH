@@ -12,7 +12,6 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,36 +21,40 @@ import java.util.logging.Logger;
  */
 public class Merendero {
     private ContadorBandejas bandLimpias, bandSucias;
+    private Escritor escritor;
+    private Paso paso;
     private Queue<Ninno> colaMerendero = new ConcurrentLinkedQueue();
     private CopyOnWriteArrayList<Ninno> ninnoMerendero = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<Monitor> monMerendero = new CopyOnWriteArrayList<>();
     private Semaphore semMerienda;
     
-    public Merendero(int p_nBandejas, int p_aforoMer){
+    public Merendero(int p_nBandejas, int p_aforoMer, Escritor p_escritor, Paso p_paso){
         bandLimpias = new ContadorBandejas(0);
         bandSucias = new ContadorBandejas(p_nBandejas);
         semMerienda = new Semaphore(20,true);
+        escritor = p_escritor;
+        paso = p_paso;
     }
     
     public void merendar (Ninno ninno){
-        Paso.mirar();
+        paso.mirar();
         colaMerendero.offer(ninno);
-        Escritor.addMsg(ninno.getMiId() + " se pone a la cola de MERENDERO");
-        Paso.mirar();
+        escritor.addMsg(ninno.getMiId() + " se pone a la cola de MERENDERO");
+        paso.mirar();
         try {
             semMerienda.acquire();
             colaMerendero.remove(ninno);
             ninnoMerendero.add(ninno);
-            Paso.mirar();
+            paso.mirar();
             bandLimpias.extraerBandeja();
-            Paso.mirar();
-            Escritor.addMsg(ninno.getMiId() + " se sienta a comer en el MERENDERO");
+            paso.mirar();
+            escritor.addMsg(ninno.getMiId() + " se sienta a comer en el MERENDERO");
             sleep(7000);
-            Paso.mirar();
+            paso.mirar();
             bandSucias.annadirBandeja();
-            Paso.mirar();
+            paso.mirar();
             ninnoMerendero.remove(ninno);
-            Escritor.addMsg(ninno.getMiId() + " abandona el MERENDERO");
+            escritor.addMsg(ninno.getMiId() + " abandona el MERENDERO");
         } catch (InterruptedException ex) {
             Logger.getLogger(Merendero.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -60,26 +63,26 @@ public class Merendero {
     }
     
     public void merendero (Monitor mon){
-        Paso.mirar();
+        paso.mirar();
         monMerendero.add(mon);
-        Escritor.addMsg(mon.getMiId() + " llega al MERENDERO");
-        Paso.mirar();
+        escritor.addMsg(mon.getMiId() + " llega al MERENDERO");
+        paso.mirar();
         while(mon.getContadorActividades() > 0){
             bandSucias.extraerBandeja();
-            Paso.mirar();
+            paso.mirar();
             try {
                 sleep((int) (3000 + 2000*Math.random()));
             } catch (InterruptedException ex) {
                 Logger.getLogger(Merendero.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Paso.mirar();
+            paso.mirar();
             bandLimpias.annadirBandeja();
             mon.substractActividad();
-            Escritor.addMsg(mon.getMiId() + " limpia una bandeja");
+            escritor.addMsg(mon.getMiId() + " limpia una bandeja");
         }
-        Paso.mirar();
+        paso.mirar();
         monMerendero.remove(mon);
-        Escritor.addMsg(mon.getMiId() + " abandona el MERENDERO");
+        escritor.addMsg(mon.getMiId() + " abandona el MERENDERO");
     }
 
     public int getBandLimpias() {

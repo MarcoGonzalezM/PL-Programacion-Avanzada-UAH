@@ -21,65 +21,73 @@ public class Tirolina {
     private ArrayList<Ninno> ninnoTirolina = new ArrayList<>();
     private ArrayList<Monitor> monTirolina = new ArrayList<>();
     private Queue<Ninno> colaTirolina = new ConcurrentLinkedQueue();
+    private Escritor escritor;
+    private Paso paso;
     private Lock lockTirolina = new ReentrantLock();
     private Condition monitorTirolina = lockTirolina.newCondition();
+    private Condition primeroCola = lockTirolina.newCondition();
     private Condition actividadesMonitor = lockTirolina.newCondition();
     
+    public Tirolina(Escritor p_escritor, Paso p_paso){
+        escritor = p_escritor;
+        paso = p_paso;
+    }
+    
     public void tirolina(Ninno ninno){
-        Paso.mirar();
-        //Instruccion bloqueante A
+        paso.mirar();
         colaTirolina.offer(ninno);
-        Escritor.addMsg(ninno.getMiId() + " se pone a la cola de la TIROLINA");
-        Paso.mirar();
-        lockTirolina.lock(); //Instruccion bloqueante B
-        //Instruccion desbloqueante A
+        escritor.addMsg(ninno.getMiId() + " se pone a la cola de la TIROLINA");
+        paso.mirar();
+        lockTirolina.lock();
         try {
-            while (monTirolina.size()==0){
-                monitorTirolina.await();
+            while (monTirolina.size()==0 || !ninno.equals(colaTirolina.peek())){
+                if (monTirolina.size()==0) monitorTirolina.await();
+                if (!colaTirolina.peek().equals(ninno))primeroCola.await();
             }
             colaTirolina.poll();
             ninnoTirolina.add(ninno);
-            Paso.mirar();
+            paso.mirar();
             estadoTirolina++;
-            Escritor.addMsg(ninno.getMiId() + " se empieza a preparar en la TIROLINA");
+            escritor.addMsg(ninno.getMiId() + " se empieza a preparar en la TIROLINA");
             sleep(1000);
             estadoTirolina++;
-            Paso.mirar();
+            paso.mirar();
             sleep(3000);
-            Escritor.addMsg(ninno.getMiId() + " se monta en la TIROLINA");
-            Paso.mirar();
+            escritor.addMsg(ninno.getMiId() + " se monta en la TIROLINA");
+            paso.mirar();
             estadoTirolina++;
-            Escritor.addMsg(ninno.getMiId() + " llega al fin de la TIROLINA");
+            escritor.addMsg(ninno.getMiId() + " llega al fin de la TIROLINA");
             sleep(500);
-            Paso.mirar();
+            paso.mirar();
             estadoTirolina=0;
             ninnoTirolina.remove(ninno);
             vecesUsado++;
             ninno.substractActividad(estadoTirolina);
             monTirolina.get(0).substractActividad();
             actividadesMonitor.signal();
+            primeroCola.signalAll();
         } catch (InterruptedException ex) {
             Logger.getLogger(Campamento.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             lockTirolina.unlock();
         }
-        Escritor.addMsg(ninno.getMiId() + " abandona la TIROLINA");
+        escritor.addMsg(ninno.getMiId() + " abandona la TIROLINA");
     }
     
     public void tirolina(Monitor mon) {
-        Paso.mirar();
+        paso.mirar();
         lockTirolina.lock();
         try {
             monTirolina.add(mon);
-            Paso.mirar();
-            monitorTirolina.signal();
-            Escritor.addMsg(mon.getMiId() + " llega a la TIROLINA");
+            paso.mirar();
+            monitorTirolina.signalAll();
+            escritor.addMsg(mon.getMiId() + " llega a la TIROLINA");
             while (mon.getContadorActividades()>0){
                 actividadesMonitor.await();
             }
-            Paso.mirar();
+            paso.mirar();
             monTirolina.remove(mon);
-            Escritor.addMsg(mon.getMiId() + " abandona la TIROLINA");
+            escritor.addMsg(mon.getMiId() + " abandona la TIROLINA");
         } catch (InterruptedException ex) {
             Logger.getLogger(Tirolina.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

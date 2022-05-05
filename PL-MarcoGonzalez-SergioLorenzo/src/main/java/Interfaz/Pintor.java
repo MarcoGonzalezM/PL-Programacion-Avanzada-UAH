@@ -6,7 +6,6 @@
 package Interfaz;
 
 import Modelo.Campamento;
-import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
@@ -108,7 +107,7 @@ public class Pintor extends Thread{
         while(true){
             pintar();
             try {
-                sleep(100);
+                sleep(50);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Pintor.class.getName()).log(Level.SEVERE, null, ex);
             }

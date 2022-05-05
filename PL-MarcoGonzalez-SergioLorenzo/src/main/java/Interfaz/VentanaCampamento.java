@@ -16,32 +16,41 @@ import java.awt.event.WindowEvent;
  * @author marco
  */
 public class VentanaCampamento extends javax.swing.JFrame {
-    private final int AFORO = 50;
-    private final int MONITORES_MERIENDA = 2, MONITORES_TIROLINA = 1, MONITORES_SOGA = 1;
-    private final int TAM_EQUIPO = 5;
-    private final int N_BANDEJAS = 25, AFORO_MERENDERO = 20;
-    private static Generador generador;
-    private static Pintor pintor;
-    private static Escritor escritor;
+    private int AFORO = 50;
+    private int MONITORES_MERIENDA = 2, MONITORES_TIROLINA = 1, MONITORES_SOGA = 1;
+    private int TAM_EQUIPO = 5;
+    private int N_BANDEJAS = 25, AFORO_MERENDERO = 20;
+    private int N_MONITORES = 4;
+    private int N_NINNOS = 20000;
+    private int N_ACTIVIDADES_NINNOS = 15;
+    private int N_ACTIVIDADES_MONITORES = 10;
+    private Generador generador;
+    private Pintor pintor;
+    private Escritor escritor;
+    private Paso paso;
     private Campamento campamento;
     /**
      * Creates new form VentanaCampamento
      */
     public VentanaCampamento() {
         initComponents();
-        campamento = new Campamento(AFORO, MONITORES_MERIENDA, MONITORES_TIROLINA, MONITORES_SOGA, TAM_EQUIPO, N_BANDEJAS, AFORO_MERENDERO);
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent evt){
                 onExit();
             }
         });
-        generador = new Generador(campamento);
+        escritor = new Escritor();
+        paso = new Paso();
+        campamento = new Campamento(AFORO, MONITORES_MERIENDA, MONITORES_TIROLINA, MONITORES_SOGA, TAM_EQUIPO, N_BANDEJAS, AFORO_MERENDERO, escritor, paso);
         pintor = new Pintor(campamento, jTextFieldEntr1,jTextFieldEntr2,jTextFieldColaTirolina,
                 jTextFieldMonTirolina, jTextFieldPrepTirolina, jTextFieldEnTirolina, jTextFieldFinTirolina,
                 jTextFieldColaSoga, jTextFieldMonSoga, jTextFieldEquipoA, jTextFieldEquipoB,
                 jTextFieldColaMerendero, jTextFieldMonMerendero, jTextFieldSucias, jTextFieldLimpias, jTextFieldNinnoMerendero,
                 jTextFieldMonZonaComun, jTextFieldNinnoZonaComun);
-        escritor = new Escritor();
+        generador = new Generador(campamento, N_MONITORES, N_NINNOS, N_ACTIVIDADES_NINNOS, N_ACTIVIDADES_MONITORES);
+        escritor.start();
+        pintor.start();
+        generador.start();
     }
 
     /**
@@ -590,12 +599,12 @@ public class VentanaCampamento extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Paso.detener();
+        paso.detener();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Paso.reanudar();
+        paso.reanudar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -629,9 +638,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaCampamento().setVisible(true);
-                pintor.start();
-                escritor.start();
-                generador.start();
             }
         });
     }

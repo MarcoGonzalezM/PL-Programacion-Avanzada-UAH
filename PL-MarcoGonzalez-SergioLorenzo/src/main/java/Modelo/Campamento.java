@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Interfaz.Escritor;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,6 +18,8 @@ public class Campamento {
     private int nMonitoresMerienda = 0, nMonitoresTirolina = 0, nMonitoresSoga = 0;
     private int nMonitoresDesMer, nMonitoresDesTir, nMonitoresDesSoga;
     private ArrayList<Integer> actividades = new ArrayList<>(Arrays.asList(0,1,2));
+    private Escritor escritor;
+    private Paso paso;
     private Tirolina tirolina;
     private Entrada entrada;
     private ZonaComun zonaComun;
@@ -24,15 +27,17 @@ public class Campamento {
     private Soga soga;
     
     //CONSTRUCTOR
-    public Campamento(int p_huecosDisponibles, int p_nMonitoresDesMer, int p_nMonitoresDesTir, int p_nMonitoresDesSoga, int p_tamEquipo, int p_nBandejas, int p_aforoMerendero){
+    public Campamento(int p_huecosDisponibles, int p_nMonitoresDesMer, int p_nMonitoresDesTir, int p_nMonitoresDesSoga, int p_tamEquipo, int p_nBandejas, int p_aforoMerendero, Escritor p_escritor, Paso p_paso){
         nMonitoresDesMer = p_nMonitoresDesMer;
         nMonitoresDesTir = p_nMonitoresDesTir;
         nMonitoresDesSoga = p_nMonitoresDesSoga;
-        entrada = new Entrada(p_huecosDisponibles);
-        soga = new Soga(p_tamEquipo);
-        tirolina = new Tirolina();
-        merendero = new Merendero(p_nBandejas,p_aforoMerendero);
-        zonaComun = new ZonaComun();
+        escritor = p_escritor;
+        paso = p_paso;
+        entrada = new Entrada(p_huecosDisponibles, escritor, paso);
+        soga = new Soga(p_tamEquipo, escritor, paso);
+        tirolina = new Tirolina(escritor, paso);
+        merendero = new Merendero(p_nBandejas,p_aforoMerendero, escritor, paso);
+        zonaComun = new ZonaComun(escritor, paso);
     }
     
     public void entrarPuerta1(Ninno ninno){
@@ -83,6 +88,27 @@ public class Campamento {
         zonaComun.descansar(mon);
     }
     
+    public synchronized boolean elegirEntrada(boolean elegida, int nMonitores){
+        if(elegida){
+            if (entrada.getNMonitoresP1()<nMonitores-1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            if (entrada.getNMonitoresP2()<nMonitores-1) {
+                return false;
+            }
+            else {
+                return true;
+            }        
+        }
+    
+    }
+    
+    
     public synchronized int reservaActividad() {
         int actividad = actividades.get((int) (actividades.size() * Math.random()));
         switch (actividad) {
@@ -106,14 +132,6 @@ public class Campamento {
             }
         }
         return actividad;
-    }
-
-    public int getnMonP1() {
-        return entrada.getNMonitoresP1();
-    }
-
-    public int getnMonP2() {
-        return entrada.getNMonitoresP2();
     }
 
     public int getnMonitoresMerienda() {
