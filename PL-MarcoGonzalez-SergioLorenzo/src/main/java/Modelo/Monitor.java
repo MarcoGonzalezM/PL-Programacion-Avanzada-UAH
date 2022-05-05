@@ -23,7 +23,7 @@ public class Monitor extends Thread{
         actividadesHastaDescanso = p_contadorActividades;
     }
     
-    public synchronized void abrirEntrada(){
+    public void abrirEntrada(){
         boolean entrada = Math.random()<0.5;
         if(entrada){
             if (campamento.getnMonP1()<nMonitores-1) {

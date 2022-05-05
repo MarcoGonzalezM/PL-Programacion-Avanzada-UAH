@@ -9,6 +9,7 @@ import Interfaz.Escritor;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -21,7 +22,8 @@ import java.util.logging.Logger;
  */
 public class Entrada {
     private int huecosDisponibles;
-    private int nMonitoresP1 = 0, nMonitoresP2 = 0;
+    private AtomicInteger nMonitoresP1 = new AtomicInteger(0);
+    private AtomicInteger nMonitoresP2 = new AtomicInteger(0);
     private boolean alternancia = false;
     private ArrayList<Ninno> colaEntrada1 = new ArrayList<>();
     private ArrayList<Ninno> colaEntrada2 = new ArrayList<>();
@@ -129,7 +131,7 @@ public class Entrada {
             cdl1.countDown();
             Escritor.addMsg(mon.getMiId() + " abre la puerta 1");
         }
-        nMonitoresP1++;
+        nMonitoresP1.getAndIncrement();
         Escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 1");
     }
     public synchronized void abrirCamp2(Monitor mon){
@@ -144,16 +146,16 @@ public class Entrada {
             cdl2.countDown();
             Escritor.addMsg(mon.getMiId() + " abre la puerta 2");
         }
-        nMonitoresP2++;
+        nMonitoresP2.getAndIncrement();
         Escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 2");
     }
 
     public int getNMonitoresP1() {
-        return nMonitoresP1;
+        return nMonitoresP1.get();
     }
 
     public int getNMonitoresP2() {
-        return nMonitoresP2;
+        return nMonitoresP2.get();
     }
     
     public String getCola1() {
