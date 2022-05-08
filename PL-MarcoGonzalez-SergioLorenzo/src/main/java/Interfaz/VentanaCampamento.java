@@ -4,6 +4,11 @@ import Modelo.Campamento;
 import Modelo.Paso;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -50,7 +55,7 @@ public class VentanaCampamento extends javax.swing.JFrame {
         generador = new Generador(campamento, N_MONITORES, N_NINNOS, N_ACTIVIDADES_NINNOS, N_ACTIVIDADES_MONITORES);
         escritor.start();
         pintor.start();
-        generador.start();
+        generador.start();        
     }
 
     /**
@@ -637,9 +642,11 @@ public class VentanaCampamento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaCampamento().setVisible(true);
+                VentanaCampamento vc = new VentanaCampamento();
+                vc.setVisible(true);               
+                
             }
-        });
+        });       
     }
     
     public void onExit(){

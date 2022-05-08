@@ -102,6 +102,9 @@ public class Tirolina {
         }
         return msg;
     }
+    public int getTamCola(){
+        return colaTirolina.size();
+    }
 
     public String getNinno(){
         String msg = "";

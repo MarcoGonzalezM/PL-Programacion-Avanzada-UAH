@@ -160,6 +160,9 @@ public class Soga {
         }
         return msg;    
     }
+    public int getTamCola(){
+        return colaSoga.size();
+    }
     public int cuantosNinnosCola(){
         return colaSoga.size();
     }

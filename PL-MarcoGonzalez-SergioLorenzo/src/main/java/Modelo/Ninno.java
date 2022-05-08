@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author marco
  */
-public class Ninno extends Thread{
+public class Ninno extends Thread implements Comparable<Ninno>{
     //ATRIBUTOS (privados)
     private String id;
     private int contActividades, totalActividades;
@@ -62,11 +62,28 @@ public class Ninno extends Thread{
         return totalActividades - contActividades;
     }
     
+    public boolean equals(Ninno ninno) {
+        return Integer.valueOf(id.substring(1)).equals(Integer.valueOf(ninno.getMiId().substring(1)));
+    }
+    public boolean equals(String idNinno) {
+        return Integer.valueOf(id.substring(1)).equals(Integer.valueOf(idNinno.substring(1)));
+    }
+    
+    @Override
+    public int compareTo(Ninno ninno) {
+        //a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
+        return Integer.valueOf(id.substring(1)).compareTo(Integer.valueOf(ninno.getMiId().substring(1)));
+    }
+    public int compareTo(String idNinno) {
+        //a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
+        return Integer.valueOf(id.substring(1)).compareTo(Integer.valueOf(idNinno.substring(1)));
+    }
+    
     public void run(){
     entrarCamp();
     while (contActividades>0){
         seleccionarActividad();
     }
     salirCamp();
-    }
+    } 
 }

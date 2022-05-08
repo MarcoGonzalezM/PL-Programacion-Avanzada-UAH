@@ -8,6 +8,7 @@ package Modelo;
 import Interfaz.Escritor;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Campamento {
     private Escritor escritor;
     private Paso paso;
     private Tirolina tirolina;
+    private RegistroNinno registroNinno;
     private Entrada entrada;
     private ZonaComun zonaComun;
     private Merendero merendero;
@@ -38,12 +40,15 @@ public class Campamento {
         tirolina = new Tirolina(escritor, paso);
         merendero = new Merendero(p_nBandejas,p_aforoMerendero, escritor, paso);
         zonaComun = new ZonaComun(escritor, paso);
+        registroNinno = new RegistroNinno();
     }
     
     public void entrarPuerta1(Ninno ninno){
+        registroNinno.annadir(ninno);
         entrada.entrarPuerta1(ninno);
     }
     public void entrarPuerta2(Ninno ninno){
+        registroNinno.annadir(ninno);
         entrada.entrarPuerta2(ninno);
     }
     public void salirCampamento(Ninno ninno){
@@ -133,6 +138,9 @@ public class Campamento {
         }
         return actividad;
     }
+    public int getNumActividadesNinno(String idNinno){
+        return registroNinno.numActividadesNinno(idNinno);
+    }
 
     public int getnMonitoresMerienda() {
         return nMonitoresMerienda;
@@ -158,6 +166,14 @@ public class Campamento {
         return tirolina.getCola();
     }
     
+    public int getTamColaT() {
+        return tirolina.getTamCola();
+    }
+    
+    public int getVecesUsadoT(){
+        return tirolina.getVecesUsado();
+    }
+    
     public String getNinnoTirolina() {
         return tirolina.getNinno();
     }
@@ -172,6 +188,10 @@ public class Campamento {
 
     public String getColaS() {
         return soga.getCola();
+    }
+    
+    public int getTamColaS(){
+        return soga.getTamCola();
     }
 
     public String getEquipoA() {
@@ -200,6 +220,10 @@ public class Campamento {
 
     public String getNinnoMerendero() {
         return merendero.getNinno();
+    }
+    
+    public int getCuantosNinnosMerienda(){
+        return merendero.cuantosNinnosMerienda();
     }
 
     public String getMonMerendero() {

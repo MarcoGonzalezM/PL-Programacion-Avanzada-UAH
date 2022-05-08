@@ -16,15 +16,14 @@ import java.util.logging.Logger;
 public class Respuesta extends Thread{
     private int numConsulta;
     private String ninno;
-    private ServerSocket servidor;
     private Socket conexion;
     private DataOutputStream salida;
     private DataInputStream entrada;
     private Campamento campamento;
     
-    public Respuesta(ServerSocket p_servidor, Campamento p_campamento){
+    public Respuesta(Socket p_conexion, Campamento p_campamento){
         try{
-            conexion = servidor.accept();
+            conexion = p_conexion;
             entrada = new DataInputStream(conexion.getInputStream());
             salida = new DataOutputStream(conexion.getOutputStream());
         } catch (IOException ex) {
@@ -40,11 +39,31 @@ public class Respuesta extends Thread{
             if (numConsulta == 7){
                 ninno = entrada.readUTF();
             }
+            int respuesta = 0;
             switch (numConsulta){
                 case 1 -> {
-                    //campamento.get
+                    respuesta = campamento.getTamColaT();
                 }
+                case 2 -> {
+                    respuesta = campamento.getVecesUsadoT();
+                }
+                case 3 -> {
+                    respuesta = campamento.getCuantosNinnosMerienda();
+                }
+                case 4 -> {
+                    respuesta = campamento.getBandSucias();
+                }
+                case 5 -> {
+                    respuesta = campamento.getBandLimpias();
+                }
+                case 6 -> {
+                    respuesta = campamento.getTamColaS();
+                }
+                case 7 -> {
+                    respuesta = campamento.getNumActividadesNinno(ninno);
+                }                
             }
+            salida.writeInt(respuesta);
         } catch (IOException ex) {
             Logger.getLogger(Respuesta.class.getName()).log(Level.SEVERE, null, ex);
         }
