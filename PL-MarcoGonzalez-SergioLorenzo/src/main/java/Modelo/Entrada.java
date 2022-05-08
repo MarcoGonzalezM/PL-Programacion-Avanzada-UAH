@@ -7,7 +7,7 @@ package Modelo;
 
 import Interfaz.Escritor;
 import static java.lang.Thread.sleep;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
@@ -27,8 +27,8 @@ public class Entrada {
     private boolean alternancia = false;
     private Escritor escritor;
     private Paso paso;
-    private ArrayList<Ninno> colaEntrada1 = new ArrayList<>();
-    private ArrayList<Ninno> colaEntrada2 = new ArrayList<>();
+    private CopyOnWriteArrayList<Ninno> colaEntrada1 = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<Ninno> colaEntrada2 = new CopyOnWriteArrayList<>();
     private CountDownLatch cdl1 = new CountDownLatch(1);
     private CountDownLatch cdl2 = new CountDownLatch(1);
     private Lock lockEntrada = new ReentrantLock();
