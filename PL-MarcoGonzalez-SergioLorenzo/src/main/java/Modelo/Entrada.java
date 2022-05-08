@@ -135,7 +135,6 @@ public class Entrada {
             cdl1.countDown();
             escritor.addMsg(mon.getMiId() + " abre la puerta 1");
         }
-        nMonitoresP1.getAndIncrement();
         escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 1");
     }
     public synchronized void abrirCamp2(Monitor mon){
@@ -150,10 +149,17 @@ public class Entrada {
             cdl2.countDown();
             escritor.addMsg(mon.getMiId() + " abre la puerta 2");
         }
-        nMonitoresP2.getAndIncrement();
         escritor.addMsg(mon.getMiId() + " entra al campamento por la puerta 2");
     }
 
+    public void incrementNMonitoresP1(){
+        nMonitoresP1.getAndIncrement();       
+    }
+    
+    public void incrementNMonitoresP2(){
+        nMonitoresP2.getAndIncrement();       
+    }
+    
     public int getNMonitoresP1() {
         return nMonitoresP1.get();
     }

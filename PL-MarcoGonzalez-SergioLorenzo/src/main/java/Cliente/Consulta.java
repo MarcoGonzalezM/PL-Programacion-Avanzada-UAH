@@ -8,6 +8,7 @@ package Cliente;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class Consulta extends Thread{
 
     public Consulta(int p_numConsulta, JTextField p_textFieldCons , JLabel p_carga) {
         try{
-            cliente = new Socket("localhost", 5000);
+            cliente = new Socket(InetAddress.getLocalHost(), 6721);
             entrada = new DataInputStream(cliente.getInputStream());
             salida = new DataOutputStream(cliente.getOutputStream());
         } catch (IOException ex) {
@@ -42,7 +43,7 @@ public class Consulta extends Thread{
     
     public Consulta(int p_numConsulta, String p_ninno, JTextField p_textFieldCons, JLabel p_carga) {
         try{
-            cliente = new Socket("localhost", 5000);
+            cliente = new Socket(InetAddress.getLocalHost(), 6721);
             entrada = new DataInputStream(cliente.getInputStream());
             salida = new DataOutputStream(cliente.getOutputStream());
         } catch (IOException ex) {

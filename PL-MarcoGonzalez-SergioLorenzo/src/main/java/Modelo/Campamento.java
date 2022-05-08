@@ -96,17 +96,21 @@ public class Campamento {
     public synchronized boolean elegirEntrada(boolean elegida, int nMonitores){
         if(elegida){
             if (entrada.getNMonitoresP1()<nMonitores-1) {
+                entrada.incrementNMonitoresP1();
                 return true;
             }
             else {
+                entrada.incrementNMonitoresP2();
                 return false;
             }
         }
         else {
             if (entrada.getNMonitoresP2()<nMonitores-1) {
+                entrada.incrementNMonitoresP2();
                 return false;
             }
             else {
+                entrada.incrementNMonitoresP1();
                 return true;
             }        
         }
