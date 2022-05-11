@@ -62,7 +62,7 @@ public class Tirolina {
             estadoTirolina=0;
             ninnoTirolina.remove(ninno);
             vecesUsado++;
-            ninno.substractActividad(estadoTirolina);
+            ninno.substractActividad(1);
             monTirolina.get(0).substractActividad();
             actividadesMonitor.signal();
             primeroCola.signalAll();

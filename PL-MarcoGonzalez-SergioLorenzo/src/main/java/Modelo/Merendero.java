@@ -7,7 +7,6 @@ package Modelo;
 
 import Interfaz.Escritor;
 import static java.lang.Thread.sleep;
-import java.util.ArrayList;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;

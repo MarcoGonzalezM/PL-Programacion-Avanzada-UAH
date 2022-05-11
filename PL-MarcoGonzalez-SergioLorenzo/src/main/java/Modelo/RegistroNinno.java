@@ -1,6 +1,8 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *
@@ -8,19 +10,25 @@ import java.util.ArrayList;
  */
 public class RegistroNinno {
     private ArrayList<Ninno> listaNinnos;
-    
+    private Lock cerr = new ReentrantLock();
+            
     public RegistroNinno(){
         listaNinnos= new ArrayList<Ninno>();
     }
     
-    public synchronized void annadir(Ninno ninno){
-        if (listaNinnos.isEmpty())listaNinnos.add(ninno);
-        else{           
-            int i = listaNinnos.size()-1;
-            while (ninno.compareTo(listaNinnos.get(i)) < 0){
-                i--;
+    public void annadir(Ninno ninno){
+        cerr.lock();
+        try{
+            if (listaNinnos.isEmpty()) listaNinnos.add(ninno);
+            else{           
+                int i = listaNinnos.size()-1;
+                while (ninno.compareTo(listaNinnos.get(i)) < 0){
+                    i--;
+                }
+                listaNinnos.add(i+1, ninno);
             }
-            listaNinnos.add(i+1, ninno);
+        } finally {
+            cerr.unlock();
         }
     }
     
@@ -49,10 +57,15 @@ public class RegistroNinno {
     }
     
     public int numActividadesNinno(String idNinno){
-        int pos = binarySearch(idNinno);
-        if (pos < 0){
-            return -1;
+        cerr.lock();
+        try{
+            int pos = binarySearch(idNinno);
+            if (pos < 0 || idNinno.equals("N")){
+                return -1;
+            }
+            return listaNinnos.get(pos).actividadesRealizadas();
+        } finally {
+            cerr.unlock();
         }
-        return listaNinnos.get(pos).actividadesRealizadas();
     }
 }

@@ -8,7 +8,6 @@ package Modelo;
 import Interfaz.Escritor;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
@@ -18,6 +17,8 @@ public class Campamento {
     //ATRIBUTOS (privados) 
     private int nMonitoresMerienda = 0, nMonitoresTirolina = 0, nMonitoresSoga = 0;
     private int nMonitoresDesMer, nMonitoresDesTir, nMonitoresDesSoga;
+    private int nCalificaciones = 0;
+    private double media = 0.0;
     private ArrayList<Integer> actividades = new ArrayList<>(Arrays.asList(0,1,2));
     private Escritor escritor;
     private Paso paso;
@@ -53,6 +54,11 @@ public class Campamento {
     }
     public void salirCampamento(Ninno ninno){
         entrada.salirCampamento(ninno);
+    }
+    public synchronized void calificar(Ninno ninno){
+        double calif = 1 + 10*Math.random();
+        media = (media*nCalificaciones + calif)/++nCalificaciones;
+        escritor.addMsg(ninno.getMiId()+ " ha calificado el campamento con una calificación de " + calif);
     }
     public void abrirCamp1(Monitor mon){
         entrada.abrirCamp1(mon);
@@ -114,10 +120,8 @@ public class Campamento {
                 return true;
             }        
         }
-    
     }
-    
-    
+      
     public synchronized int reservaActividad() {
         int actividad = actividades.get((int) (actividades.size() * Math.random()));
         switch (actividad) {
@@ -241,5 +245,8 @@ public class Campamento {
     public String getMonZC() {
         return zonaComun.getMon();
     }
-
+    
+    public int getValoracion() {
+        return (int) media;
+    }
 }
