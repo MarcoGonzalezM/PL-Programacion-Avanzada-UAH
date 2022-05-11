@@ -4,7 +4,6 @@ import Modelo.Campamento;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,7 +60,10 @@ public class Respuesta extends Thread{
                 }
                 case 7 -> {
                     respuesta = campamento.getNumActividadesNinno(ninno);
-                }                
+                }
+                case 8 -> {
+                    respuesta = (int) campamento.getValoracion();
+                }
             }
             salida.writeInt(respuesta);
         } catch (IOException ex) {

@@ -4,11 +4,6 @@ import Modelo.Campamento;
 import Modelo.Paso;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -197,20 +192,10 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jTextFieldEquipoB.setEditable(false);
         jTextFieldEquipoB.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldEquipoB.setText("jTextFieldSoga");
-        jTextFieldEquipoB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEquipoBActionPerformed(evt);
-            }
-        });
 
         jTextFieldMonSoga.setEditable(false);
         jTextFieldMonSoga.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldMonSoga.setText("jTextFieldSoga");
-        jTextFieldMonSoga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMonSogaActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel10.setText("Tirolina");
@@ -218,11 +203,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jTextFieldEnTirolina.setEditable(false);
         jTextFieldEnTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldEnTirolina.setText("jTextFieldSoga");
-        jTextFieldEnTirolina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEnTirolinaActionPerformed(evt);
-            }
-        });
 
         jLabel11.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel11.setText("TIROLINA");
@@ -230,20 +210,10 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jTextFieldPrepTirolina.setEditable(false);
         jTextFieldPrepTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldPrepTirolina.setText("jTextFieldSoga");
-        jTextFieldPrepTirolina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPrepTirolinaActionPerformed(evt);
-            }
-        });
 
         jTextFieldMonTirolina.setEditable(false);
         jTextFieldMonTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldMonTirolina.setText("jTextFieldSoga");
-        jTextFieldMonTirolina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMonTirolinaActionPerformed(evt);
-            }
-        });
 
         jTextFieldColaTirolina.setEditable(false);
         jTextFieldColaTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -264,11 +234,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jTextFieldFinTirolina.setEditable(false);
         jTextFieldFinTirolina.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldFinTirolina.setText("jTextFieldSoga");
-        jTextFieldFinTirolina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFinTirolinaActionPerformed(evt);
-            }
-        });
 
         jLabel16.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel16.setText("SOGA");
@@ -282,20 +247,10 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jTextFieldMonZonaComun.setEditable(false);
         jTextFieldMonZonaComun.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldMonZonaComun.setText("jTextFieldSoga");
-        jTextFieldMonZonaComun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMonZonaComunActionPerformed(evt);
-            }
-        });
 
         jTextFieldNinnoZonaComun.setEditable(false);
         jTextFieldNinnoZonaComun.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldNinnoZonaComun.setText("jTextFieldSoga");
-        jTextFieldNinnoZonaComun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNinnoZonaComunActionPerformed(evt);
-            }
-        });
 
         jLabel19.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel19.setText("Niños");
@@ -303,11 +258,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jTextFieldColaMerendero.setEditable(false);
         jTextFieldColaMerendero.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldColaMerendero.setText("jTextFieldSoga");
-        jTextFieldColaMerendero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldColaMerenderoActionPerformed(evt);
-            }
-        });
 
         jLabel20.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel20.setText("Cola");
@@ -318,20 +268,10 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jTextFieldMonMerendero.setEditable(false);
         jTextFieldMonMerendero.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldMonMerendero.setText("jTextFieldSoga");
-        jTextFieldMonMerendero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMonMerenderoActionPerformed(evt);
-            }
-        });
 
         jTextFieldNinnoMerendero.setEditable(false);
         jTextFieldNinnoMerendero.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldNinnoMerendero.setText("jTextFieldSoga");
-        jTextFieldNinnoMerendero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNinnoMerenderoActionPerformed(evt);
-            }
-        });
 
         jLabel22.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel22.setText("Niños");
@@ -342,11 +282,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
         jTextFieldLimpias.setEditable(false);
         jTextFieldLimpias.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldLimpias.setText("jTextFieldSoga");
-        jTextFieldLimpias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLimpiasActionPerformed(evt);
-            }
-        });
 
         jLabel24.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel24.setText("Sucias");
@@ -553,54 +488,6 @@ public class VentanaCampamento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldEquipoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEquipoBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEquipoBActionPerformed
-
-    private void jTextFieldMonSogaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMonSogaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMonSogaActionPerformed
-
-    private void jTextFieldEnTirolinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnTirolinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEnTirolinaActionPerformed
-
-    private void jTextFieldPrepTirolinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrepTirolinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPrepTirolinaActionPerformed
-
-    private void jTextFieldMonTirolinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMonTirolinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMonTirolinaActionPerformed
-
-    private void jTextFieldFinTirolinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFinTirolinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFinTirolinaActionPerformed
-
-    private void jTextFieldMonZonaComunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMonZonaComunActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMonZonaComunActionPerformed
-
-    private void jTextFieldNinnoZonaComunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNinnoZonaComunActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNinnoZonaComunActionPerformed
-
-    private void jTextFieldColaMerenderoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldColaMerenderoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldColaMerenderoActionPerformed
-
-    private void jTextFieldMonMerenderoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMonMerenderoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMonMerenderoActionPerformed
-
-    private void jTextFieldNinnoMerenderoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNinnoMerenderoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNinnoMerenderoActionPerformed
-
-    private void jTextFieldLimpiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLimpiasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLimpiasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:

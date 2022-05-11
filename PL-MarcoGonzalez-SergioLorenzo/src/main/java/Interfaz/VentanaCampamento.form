@@ -402,9 +402,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEquipoBActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldMonSoga">
       <Properties>
@@ -414,9 +411,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMonSogaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
@@ -434,9 +428,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEnTirolinaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
@@ -454,9 +445,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPrepTirolinaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldMonTirolina">
       <Properties>
@@ -466,9 +454,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMonTirolinaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldColaTirolina">
       <Properties>
@@ -519,9 +504,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldFinTirolinaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
       <Properties>
@@ -555,9 +537,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMonZonaComunActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNinnoZonaComun">
       <Properties>
@@ -567,9 +546,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNinnoZonaComunActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel19">
       <Properties>
@@ -587,9 +563,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldColaMerenderoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel20">
       <Properties>
@@ -615,9 +588,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMonMerenderoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNinnoMerendero">
       <Properties>
@@ -627,9 +597,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNinnoMerenderoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
       <Properties>
@@ -655,9 +622,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jTextFieldSoga"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldLimpiasActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel24">
       <Properties>

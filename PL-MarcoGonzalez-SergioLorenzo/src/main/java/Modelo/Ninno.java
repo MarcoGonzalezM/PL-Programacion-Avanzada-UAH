@@ -52,6 +52,7 @@ public class Ninno extends Thread implements Comparable<Ninno>{
     
     public void salirCamp(){
         campamento.salirCampamento(this);
+        campamento.calificar(this);
     }
     
     public void substractActividad(int num){
