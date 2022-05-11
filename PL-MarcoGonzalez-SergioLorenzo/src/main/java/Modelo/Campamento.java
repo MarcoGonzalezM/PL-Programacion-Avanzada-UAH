@@ -56,8 +56,8 @@ public class Campamento {
         entrada.salirCampamento(ninno);
     }
     public synchronized void calificar(Ninno ninno){
-        double calif = 10*Math.random();
-        media = (media*nCalificaciones + calif)/nCalificaciones++;
+        double calif = 1 + 10*Math.random();
+        media = (media*nCalificaciones + calif)/++nCalificaciones;
         escritor.addMsg(ninno.getMiId()+ " ha calificado el campamento con una calificación de " + calif);
     }
     public void abrirCamp1(Monitor mon){
@@ -246,9 +246,7 @@ public class Campamento {
         return zonaComun.getMon();
     }
     
-    public double getValoracion() {
-        
-        return 0.0;
+    public int getValoracion() {
+        return (int) media;
     }
-
 }

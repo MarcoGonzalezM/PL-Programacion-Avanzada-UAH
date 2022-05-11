@@ -62,7 +62,7 @@ public class Respuesta extends Thread{
                     respuesta = campamento.getNumActividadesNinno(ninno);
                 }
                 case 8 -> {
-                    respuesta = (int) campamento.getValoracion();
+                    respuesta = campamento.getValoracion();
                 }
             }
             salida.writeInt(respuesta);
