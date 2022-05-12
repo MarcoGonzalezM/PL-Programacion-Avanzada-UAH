@@ -60,11 +60,11 @@ public class Consulta extends Thread{
     @Override
     public void run(){
         try{
+            carga.setText("C");
             salida.writeInt(numConsulta);
             if (numConsulta == 7) {
                 salida.writeUTF(ninno);
             }
-            carga.setText("C");
             int numDevuelto = entrada.readInt();
             carga.setText("");
             textFieldCons.setText(numDevuelto+"");
