@@ -67,7 +67,6 @@ public class Soga {
                     if (Math.random() < 0.5) {
                         if (!colaSogaEquipoA.offer(n)) {
                             colaSogaEquipoB.put(n);
-
                         }
                     } else {
                         if (!colaSogaEquipoB.offer(n)) {
