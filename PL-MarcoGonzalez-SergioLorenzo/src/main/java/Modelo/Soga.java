@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,9 +21,6 @@ public class Soga {
     private ArrayBlockingQueue<Ninno> colaSogaEquipoA;
     private ArrayBlockingQueue<Ninno> colaSogaEquipoB;
     private ArrayList<Monitor> monSoga = new ArrayList<>();
-    private Lock lockSoga = new ReentrantLock();
-    private Condition hayMonitor = lockSoga.newCondition();
-    private Condition ninnosSuficientes = lockSoga.newCondition();
     private CyclicBarrier barreraSoga;
     
     public Soga(int p_tamEquipo, Escritor p_escritor, Paso p_paso){
@@ -49,17 +43,6 @@ public class Soga {
             }
             escritor.addMsg(ninno.getMiId() + " se pone a la cola de SOGA");
             paso.mirar();
-            lockSoga.lock();
-            try{
-                ninnosSuficientes.signal();
-                while (monSoga.size()==0){    
-                    hayMonitor.await();
-                }
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Soga.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                lockSoga.unlock();
-            }
             try {
                 barreraSoga.await();
             } catch (InterruptedException ex) {
@@ -76,17 +59,6 @@ public class Soga {
         escritor.addMsg(mon.getMiId() + " llega a la SOGA");
         paso.mirar();
         while (mon.getContadorActividades() > 0) {
-            lockSoga.lock();
-            try {
-                hayMonitor.signalAll();
-                while (colaSogaEquipoA.size() + colaSogaEquipoB.size() == tamEquipo * 2) {
-                    ninnosSuficientes.await();
-                }
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Soga.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                lockSoga.unlock();
-            }
             for (int i = 0; i < tamEquipo * 2; i++) {
                 paso.mirar();
                 Ninno n;
