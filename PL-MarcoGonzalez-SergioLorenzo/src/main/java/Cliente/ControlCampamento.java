@@ -110,6 +110,7 @@ public class ControlCampamento extends javax.swing.JFrame {
 
         jTextField6.setEditable(false);
 
+        jTextField8.setEditable(false);
         jTextField8.setToolTipText("");
 
         jButton1.setText("Consultar");

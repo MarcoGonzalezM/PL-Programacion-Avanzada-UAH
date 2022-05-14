@@ -31,7 +31,7 @@ public class Paso {
         } finally {
             lock.unlock();
         }
-    }
+    }   
     
     public void reanudar(){
         try{

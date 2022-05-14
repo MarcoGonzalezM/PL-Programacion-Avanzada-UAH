@@ -50,7 +50,7 @@ public class Generador extends Thread{
                     @Override
                     public void run() {escucharConsulta();}
                 });
-                hilo.start();
+                hilo.start();   
         for (int i=1;i<=n_monitores;i++){
             m = new Monitor(i,n_monitores, n_actividades_monitores,campamento);
             m.start();
