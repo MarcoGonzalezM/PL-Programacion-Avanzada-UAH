@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Merendero.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+  1 <span class="comment">/*</span>
+  2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+  3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+  4 <span class="comment"> * and open the template in the editor.</span>
+  5 <span class="comment"> */</span>
+  6 <span class="literal">package</span> Modelo;
+  7 
+  8 <span class="literal">import</span> Interfaz.Escritor;
+  9 <span class="literal">import</span> <span class="literal">static</span> java.lang.Thread.sleep;
+ 10 <span class="literal">import</span> java.util.Queue;
+ 11 <span class="literal">import</span> java.util.concurrent.ConcurrentLinkedQueue;
+ 12 <span class="literal">import</span> java.util.concurrent.CopyOnWriteArrayList;
+ 13 <span class="literal">import</span> java.util.concurrent.Semaphore;
+ 14 <span class="literal">import</span> java.util.logging.Level;
+ 15 <span class="literal">import</span> java.util.logging.Logger;
+ 16 
+ 17 <span class="comment">/**</span>
+ 18 <span class="comment"> *</span>
+ 19 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+ 20  <span class="comment">*/</span>
+ 21 <span class="literal">public</span> <span class="literal">class</span> Merendero {
+ 22     <span class="literal">private</span> ContadorBandejas bandLimpias, bandSucias;
+ 23     <span class="literal">private</span> Escritor escritor;
+ 24     <span class="literal">private</span> Paso paso;
+ 25     <span class="literal">private</span> Queue&lt;Ninno&gt; colaMerendero = <span class="literal">new</span> ConcurrentLinkedQueue();
+ 26     <span class="literal">private</span> CopyOnWriteArrayList&lt;Ninno&gt; ninnoMerendero = <span class="literal">new</span> CopyOnWriteArrayList&lt;&gt;();
+ 27     <span class="literal">private</span> CopyOnWriteArrayList&lt;Monitor&gt; monMerendero = <span class="literal">new</span> CopyOnWriteArrayList&lt;&gt;();
+ 28     <span class="literal">private</span> Semaphore semMerienda;
+ 29     
+ 30     <span class="literal">public</span> Merendero(<span class="literal">int</span> p_nBandejas, <span class="literal">int</span> p_aforoMer, Escritor p_escritor, Paso p_paso){
+ 31         bandLimpias = <span class="literal">new</span> ContadorBandejas(0);
+ 32         bandSucias = <span class="literal">new</span> ContadorBandejas(p_nBandejas);
+ 33         semMerienda = <span class="literal">new</span> Semaphore(p_aforoMer,<span class="literal">true</span>);
+ 34         escritor = p_escritor;
+ 35         paso = p_paso;
+ 36     }
+ 37     
+ 38     <span class="literal">public</span> <span class="literal">void</span> merendar (Ninno ninno){
+ 39         paso.mirar();
+ 40         colaMerendero.offer(ninno);
+ 41         escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> se pone a la cola de MERENDERO</span><span class="string">&quot;</span>);
+ 42         paso.mirar();
+ 43         <span class="literal">try</span> {
+ 44             semMerienda.acquire();
+ 45             colaMerendero.remove(ninno);
+ 46             ninnoMerendero.add(ninno);
+ 47             paso.mirar();
+ 48             bandLimpias.extraerBandeja();
+ 49             paso.mirar();
+ 50             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> se sienta a comer en el MERENDERO</span><span class="string">&quot;</span>);
+ 51             sleep(7000);
+ 52             paso.mirar();
+ 53             bandSucias.annadirBandeja();
+ 54             paso.mirar();
+ 55             ninnoMerendero.remove(ninno);
+ 56             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> abandona el MERENDERO</span><span class="string">&quot;</span>);
+ 57         } <span class="literal">catch</span> (InterruptedException ex) {
+ 58             Logger.getLogger(Merendero.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+ 59         } <span class="literal">finally</span> {
+ 60             semMerienda.release();
+ 61         }
+ 62     }
+ 63     
+ 64     <span class="literal">public</span> <span class="literal">void</span> merendero (Monitor mon){
+ 65         paso.mirar();
+ 66         monMerendero.add(mon);
+ 67         escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> llega al MERENDERO</span><span class="string">&quot;</span>);
+ 68         paso.mirar();
+ 69         <span class="literal">while</span>(mon.getContadorActividades() &gt; 0){
+ 70             bandSucias.extraerBandeja();
+ 71             paso.mirar();
+ 72             <span class="literal">try</span> {
+ 73                 sleep((<span class="literal">int</span>) (3000 + 2000*Math.random()));
+ 74             } <span class="literal">catch</span> (InterruptedException ex) {
+ 75                 Logger.getLogger(Merendero.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+ 76             }
+ 77             paso.mirar();
+ 78             bandLimpias.annadirBandeja();
+ 79             mon.substractActividad();
+ 80             escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> limpia una bandeja</span><span class="string">&quot;</span>);
+ 81         }
+ 82         paso.mirar();
+ 83         monMerendero.remove(mon);
+ 84         escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> abandona el MERENDERO</span><span class="string">&quot;</span>);
+ 85     }
+ 86 
+ 87     <span class="literal">public</span> <span class="literal">int</span> getBandLimpias() {
+ 88         <span class="literal">return</span> bandLimpias.get();
+ 89     }
+ 90 
+ 91     <span class="literal">public</span> <span class="literal">int</span> getBandSucias() {
+ 92         <span class="literal">return</span> bandSucias.get();
+ 93     }
+ 94 
+ 95     <span class="literal">public</span> String getCola() {
+ 96         String msg = <span class="string">&quot;&quot;</span>;
+ 97         <span class="literal">for</span> (Ninno ninno:colaMerendero){
+ 98             msg += ninno.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+ 99         }
+100         <span class="literal">return</span> msg;
+101     }
+102 
+103     <span class="literal">public</span> String getNinno() {
+104         String msg = <span class="string">&quot;&quot;</span>;
+105         <span class="literal">for</span> (Ninno ninno:ninnoMerendero){
+106             msg += ninno.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+107         }
+108         <span class="literal">return</span> msg;    
+109     }
+110     <span class="literal">public</span> <span class="literal">int</span> cuantosNinnosMerienda(){
+111         <span class="literal">return</span> ninnoMerendero.size();
+112     }
+113 
+114     <span class="literal">public</span> String getMon() {
+115         String msg = <span class="string">&quot;&quot;</span>;
+116         <span class="literal">for</span> (Monitor mon:monMerendero){
+117             msg += mon.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+118         }
+119         <span class="literal">return</span> msg;    
+120     }
+121 }
+122 
+</pre></body>
+</html>

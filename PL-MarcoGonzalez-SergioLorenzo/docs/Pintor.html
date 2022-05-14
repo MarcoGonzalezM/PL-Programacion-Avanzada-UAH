@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Pintor.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+  1 <span class="comment">/*</span>
+  2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+  3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+  4 <span class="comment"> * and open the template in the editor.</span>
+  5 <span class="comment"> */</span>
+  6 <span class="literal">package</span> Interfaz;
+  7 
+  8 <span class="literal">import</span> Modelo.Campamento;
+  9 <span class="literal">import</span> java.util.logging.Level;
+ 10 <span class="literal">import</span> java.util.logging.Logger;
+ 11 <span class="literal">import</span> javax.swing.JTextField;
+ 12 
+ 13 <span class="comment">/**</span>
+ 14 <span class="comment"> *</span>
+ 15 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+ 16  <span class="comment">*/</span>
+ 17 <span class="literal">public</span> <span class="literal">class</span> Pintor <span class="literal">extends</span> Thread{
+ 18     <span class="comment">// Esta clase se encargará de actualizar la interfaz con la información en vivo del campamento</span>
+ 19     <span class="literal">private</span> Campamento campamento;
+ 20     <span class="literal">private</span> JTextField colaEntrada1;
+ 21     <span class="literal">private</span> JTextField colaEntrada2;
+ 22     <span class="literal">private</span> JTextField colaTirolina;
+ 23     <span class="literal">private</span> JTextField monitorTirolina;
+ 24     <span class="literal">private</span> JTextField inicioTirolina;
+ 25     <span class="literal">private</span> JTextField dentroTirolina;
+ 26     <span class="literal">private</span> JTextField finTirolina;
+ 27     <span class="literal">private</span> JTextField colaSoga;
+ 28     <span class="literal">private</span> JTextField monitorSoga;
+ 29     <span class="literal">private</span> JTextField equipoASoga;
+ 30     <span class="literal">private</span> JTextField equipoBSoga;
+ 31     <span class="literal">private</span> JTextField colaMerendero;
+ 32     <span class="literal">private</span> JTextField monitorMerendero;
+ 33     <span class="literal">private</span> JTextField bandejasSucias;
+ 34     <span class="literal">private</span> JTextField bandejasLimpias;
+ 35     <span class="literal">private</span> JTextField dentroMerendero;
+ 36     <span class="literal">private</span> JTextField monitoresZC;
+ 37     <span class="literal">private</span> JTextField ninnosZC;
+ 38 
+ 39     <span class="literal">public</span> Pintor(Campamento campamento,JTextField colaEntrada1, JTextField colaEntrada2, JTextField colaTirolina, 
+ 40             JTextField monitorTirolina, JTextField inicioTirolina, JTextField dentroTirolina, JTextField finTirolina, 
+ 41             JTextField colaSoga, JTextField monitorSoga, JTextField equipoASoga, JTextField equipoBSoga, 
+ 42             JTextField colaMerendero, JTextField monitorMerendero, JTextField bandejasSucias, 
+ 43             JTextField bandejasLimpias, JTextField dentroMerendero, JTextField monitoresZC, JTextField ninnosZC) {
+ 44         <span class="literal">this</span>.campamento = campamento;
+ 45         <span class="literal">this</span>.colaEntrada1 = colaEntrada1;
+ 46         <span class="literal">this</span>.colaEntrada2 = colaEntrada2;
+ 47         <span class="literal">this</span>.colaTirolina = colaTirolina;
+ 48         <span class="literal">this</span>.monitorTirolina = monitorTirolina;
+ 49         <span class="literal">this</span>.inicioTirolina = inicioTirolina;
+ 50         <span class="literal">this</span>.dentroTirolina = dentroTirolina;
+ 51         <span class="literal">this</span>.finTirolina = finTirolina;
+ 52         <span class="literal">this</span>.colaSoga = colaSoga;
+ 53         <span class="literal">this</span>.monitorSoga = monitorSoga;
+ 54         <span class="literal">this</span>.equipoASoga = equipoASoga;
+ 55         <span class="literal">this</span>.equipoBSoga = equipoBSoga;
+ 56         <span class="literal">this</span>.colaMerendero = colaMerendero;
+ 57         <span class="literal">this</span>.monitorMerendero = monitorMerendero;
+ 58         <span class="literal">this</span>.bandejasSucias = bandejasSucias;
+ 59         <span class="literal">this</span>.bandejasLimpias = bandejasLimpias;
+ 60         <span class="literal">this</span>.dentroMerendero = dentroMerendero;
+ 61         <span class="literal">this</span>.monitoresZC = monitoresZC;
+ 62         <span class="literal">this</span>.ninnosZC = ninnosZC;
+ 63     }
+ 64     
+ 65     <span class="literal">public</span> <span class="literal">void</span> pintar(){
+ 66         colaEntrada1.setText(campamento.getCola1());
+ 67         colaEntrada2.setText(campamento.getCola2());
+ 68         colaTirolina.setText(campamento.getColaT());
+ 69         monitorTirolina.setText(campamento.getMonTirolina());
+ 70         <span class="literal">int</span> estadoTirolina = campamento.getEstadoTirolina();
+ 71         <span class="literal">switch</span>(estadoTirolina){
+ 72             <span class="literal">case</span> 0-&gt; {
+ 73                 inicioTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 74                 dentroTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 75                 finTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 76             }
+ 77                 <span class="literal">case</span> 1-&gt;{
+ 78                 inicioTirolina.setText(campamento.getNinnoTirolina());
+ 79                 dentroTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 80                 finTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 81             }
+ 82                 <span class="literal">case</span> 2-&gt;{
+ 83                 inicioTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 84                 dentroTirolina.setText(campamento.getNinnoTirolina());
+ 85                 finTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 86             }
+ 87                 <span class="literal">case</span> 3-&gt;{
+ 88                 inicioTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 89                 dentroTirolina.setText(<span class="string">&quot;&quot;</span>);
+ 90                 finTirolina.setText(campamento.getNinnoTirolina());
+ 91             }
+ 92         }
+ 93         colaSoga.setText(campamento.getColaS());
+ 94         monitorSoga.setText(campamento.getMonSoga());
+ 95         equipoASoga.setText(campamento.getEquipoA());
+ 96         equipoBSoga.setText(campamento.getEquipoB());
+ 97         colaMerendero.setText(campamento.getColaMerendero());
+ 98         monitorMerendero.setText(campamento.getMonMerendero());
+ 99         bandejasSucias.setText(<span class="string">&quot;&quot;</span>+campamento.getBandSucias());
+100         bandejasLimpias.setText(<span class="string">&quot;&quot;</span>+campamento.getBandLimpias());
+101         dentroMerendero.setText(campamento.getNinnoMerendero());
+102         monitoresZC.setText(campamento.getMonZC());
+103         ninnosZC.setText(campamento.getNinnoZC());
+104     }
+105     
+106     <span class="literal">public</span> <span class="literal">void</span> run(){
+107         <span class="literal">while</span>(<span class="literal">true</span>){
+108             pintar();
+109             <span class="literal">try</span> {
+110                 sleep(50);
+111             } <span class="literal">catch</span> (InterruptedException ex) {
+112                 Logger.getLogger(Pintor.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+113             }
+114         }
+115     }
+116     
+117     
+118 }
+119 
+</pre></body>
+</html>

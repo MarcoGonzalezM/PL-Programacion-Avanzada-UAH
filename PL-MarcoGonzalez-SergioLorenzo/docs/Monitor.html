@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Monitor.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="comment">/*</span>
+ 2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+ 3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+ 4 <span class="comment"> * and open the template in the editor.</span>
+ 5 <span class="comment"> */</span>
+ 6 <span class="literal">package</span> Modelo;
+ 7 
+ 8 <span class="comment">/**</span>
+ 9 <span class="comment"> *</span>
+10 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+11  <span class="comment">*/</span>
+12 <span class="literal">public</span> <span class="literal">class</span> Monitor <span class="literal">extends</span> Thread{
+13     <span class="comment">//ATRIBUTOS (prvivados)</span>
+14     <span class="literal">private</span> String id;
+15     <span class="literal">private</span> Campamento campamento;
+16     <span class="literal">private</span> <span class="literal">int</span> nMonitores, contadorActividades, actividadesHastaDescanso;
+17 
+18     <span class="literal">public</span> Monitor(<span class="literal">int</span> p_id, <span class="literal">int</span> p_nMonitores, <span class="literal">int</span> p_contadorActividades, Campamento p_campamento) {
+19         id = <span class="string">&quot;</span><span class="string">M</span><span class="string">&quot;</span> + p_id;
+20         campamento = p_campamento;
+21         nMonitores = p_nMonitores;
+22         contadorActividades = p_contadorActividades;
+23         actividadesHastaDescanso = p_contadorActividades;
+24     }
+25     
+26     <span class="literal">public</span> <span class="literal">void</span> abrirEntrada(){
+27         <span class="literal">boolean</span> entrada = Math.random()&lt;0.5;
+28         entrada = campamento.elegirEntrada(entrada, nMonitores);
+29         <span class="literal">if</span>(entrada){
+30             campamento.abrirCamp1(<span class="literal">this</span>);
+31         }
+32         <span class="literal">else</span> {
+33             campamento.abrirCamp2(<span class="literal">this</span>);
+34         }
+35     }
+36 
+37     <span class="literal">public</span> String getMiId() {
+38         <span class="literal">return</span> id;
+39     }
+40 
+41     <span class="literal">public</span> <span class="literal">int</span> getContadorActividades() {
+42         <span class="literal">return</span> contadorActividades;
+43     }
+44     
+45     <span class="literal">public</span> <span class="literal">void</span> substractActividad(){
+46         contadorActividades--;
+47     }
+48 
+49     <span class="literal">public</span> <span class="literal">void</span> run() {
+50         abrirEntrada();
+51         <span class="literal">int</span> actividad = campamento.reservaActividad();
+52         <span class="literal">while</span> (<span class="literal">true</span>) {
+53                 <span class="literal">switch</span> (actividad) {
+54                     <span class="literal">case</span> 0 -&gt;
+55                         campamento.accederMerendero(<span class="literal">this</span>);
+56                     <span class="literal">case</span> 1 -&gt;
+57                         campamento.accederTirolina(<span class="literal">this</span>);
+58                     <span class="literal">case</span> 2 -&gt;
+59                         campamento.accederSoga(<span class="literal">this</span>);
+60                 }
+61             campamento.accederZonaComun(<span class="literal">this</span>);
+62             contadorActividades = actividadesHastaDescanso;
+63         }
+64     }
+65 }
+66 
+</pre></body>
+</html>

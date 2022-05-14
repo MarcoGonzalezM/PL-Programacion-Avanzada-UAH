@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Respuesta.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="literal">package</span> Interfaz;
+ 2 
+ 3 <span class="literal">import</span> Modelo.Campamento;
+ 4 <span class="literal">import</span> java.io.DataInputStream;
+ 5 <span class="literal">import</span> java.io.DataOutputStream;
+ 6 <span class="literal">import</span> java.io.IOException;
+ 7 <span class="literal">import</span> java.net.Socket;
+ 8 <span class="literal">import</span> java.util.logging.Level;
+ 9 <span class="literal">import</span> java.util.logging.Logger;
+10 
+11 <span class="comment">/**</span>
+12 <span class="comment"> *</span>
+13 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">sergi</span>
+14  <span class="comment">*/</span>
+15 <span class="literal">public</span> <span class="literal">class</span> Respuesta <span class="literal">extends</span> Thread{
+16     <span class="literal">private</span> <span class="literal">int</span> numConsulta;
+17     <span class="literal">private</span> String ninno;
+18     <span class="literal">private</span> Socket conexion;
+19     <span class="literal">private</span> DataOutputStream salida;
+20     <span class="literal">private</span> DataInputStream entrada;
+21     <span class="literal">private</span> Campamento campamento;
+22     
+23     <span class="literal">public</span> Respuesta(Socket p_conexion, Campamento p_campamento){
+24         <span class="literal">try</span>{
+25             conexion = p_conexion;
+26             entrada = <span class="literal">new</span> DataInputStream(conexion.getInputStream());
+27             salida = <span class="literal">new</span> DataOutputStream(conexion.getOutputStream());
+28         } <span class="literal">catch</span> (IOException ex) {
+29             Logger.getLogger(Respuesta.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+30         }
+31         campamento = p_campamento;
+32     }
+33     
+34     @Override
+35     <span class="literal">public</span> <span class="literal">void</span> run(){
+36         <span class="literal">try</span> {
+37             numConsulta = entrada.readInt();
+38             <span class="literal">if</span> (numConsulta == 7){
+39                 ninno = entrada.readUTF();
+40             }
+41             <span class="literal">int</span> respuesta = 0;
+42             <span class="literal">switch</span> (numConsulta){
+43                 <span class="literal">case</span> 1 -&gt; {
+44                     respuesta = campamento.getTamColaT();
+45                 }
+46                 <span class="literal">case</span> 2 -&gt; {
+47                     respuesta = campamento.getVecesUsadoT();
+48                 }
+49                 <span class="literal">case</span> 3 -&gt; {
+50                     respuesta = campamento.getCuantosNinnosMerienda();
+51                 }
+52                 <span class="literal">case</span> 4 -&gt; {
+53                     respuesta = campamento.getBandSucias();
+54                 }
+55                 <span class="literal">case</span> 5 -&gt; {
+56                     respuesta = campamento.getBandLimpias();
+57                 }
+58                 <span class="literal">case</span> 6 -&gt; {
+59                     respuesta = campamento.getTamColaS();
+60                 }
+61                 <span class="literal">case</span> 7 -&gt; {
+62                     respuesta = campamento.getNumActividadesNinno(ninno);
+63                 }
+64                 <span class="literal">case</span> 8 -&gt; {
+65                     respuesta = campamento.getValoracion();
+66                 }
+67             }
+68             salida.writeInt(respuesta);
+69         } <span class="literal">catch</span> (IOException ex) {
+70             Logger.getLogger(Respuesta.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+71         }
+72     }
+73 }
+74 
+</pre></body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Generador.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="literal">package</span> Interfaz;
+ 2 
+ 3 <span class="literal">import</span> Modelo.Campamento;
+ 4 <span class="literal">import</span> Modelo.Monitor;
+ 5 <span class="literal">import</span> Modelo.Ninno;
+ 6 <span class="literal">import</span> java.io.IOException;
+ 7 <span class="literal">import</span> java.net.ServerSocket;
+ 8 <span class="literal">import</span> java.net.Socket;
+ 9 <span class="literal">import</span> java.util.logging.Level;
+10 <span class="literal">import</span> java.util.logging.Logger;
+11 
+12 <span class="comment">/**</span>
+13 <span class="comment"> *</span>
+14 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">sergi</span>
+15  <span class="comment">*/</span>
+16 <span class="literal">public</span> <span class="literal">class</span> Generador <span class="literal">extends</span> Thread{
+17     <span class="literal">private</span> <span class="literal">int</span> n_monitores, n_ninnos, n_actividades_ninnos, n_actividades_monitores;
+18     <span class="literal">private</span> Campamento campamento;
+19     <span class="literal">private</span> Monitor m;
+20     <span class="literal">private</span> Ninno n;
+21     <span class="literal">private</span> ServerSocket servidor;
+22     <span class="literal">private</span> Socket conexion;
+23     <span class="literal">public</span> Generador(Campamento p_campanento, <span class="literal">int</span>  p_n_monitores, <span class="literal">int</span> p_n_ninnos, <span class="literal">int</span> p_n_actividades_ninnos, <span class="literal">int</span> p_n_actividades_monitores){
+24         campamento = p_campanento;
+25         n_monitores = p_n_monitores;
+26         n_ninnos = p_n_ninnos;
+27         n_actividades_monitores = p_n_actividades_monitores;
+28         n_actividades_ninnos = p_n_actividades_ninnos;
+29         <span class="literal">try</span> {
+30             servidor = <span class="literal">new</span> ServerSocket(6721);
+31         } <span class="literal">catch</span> (IOException ex) {
+32             Logger.getLogger(VentanaCampamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+33         }
+34     }
+35     
+36     <span class="literal">public</span> <span class="literal">void</span> escucharConsulta(){
+37         <span class="literal">while</span> (<span class="literal">true</span>){
+38             <span class="literal">try</span> {
+39                 conexion = servidor.accept();
+40             } <span class="literal">catch</span> (IOException ex) {
+41                 Logger.getLogger(VentanaCampamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+42             }
+43             Respuesta res = <span class="literal">new</span> Respuesta(conexion, campamento);
+44             res.start();
+45         }
+46     }
+47     @Override
+48     <span class="literal">public</span> <span class="literal">void</span> run(){
+49         Thread hilo = <span class="literal">new</span> Thread(<span class="literal">new</span> Runnable() {
+50                     @Override
+51                     <span class="literal">public</span> <span class="literal">void</span> run() {escucharConsulta();}
+52                 });
+53                 hilo.start();   
+54         <span class="literal">for</span> (<span class="literal">int</span> i=1;i&lt;=n_monitores;i++){
+55             m = <span class="literal">new</span> Monitor(i,n_monitores, n_actividades_monitores,campamento);
+56             m.start();
+57         }
+58         <span class="literal">for</span> (<span class="literal">int</span> i=0;i&lt;n_ninnos;i++){
+59             n = <span class="literal">new</span> Ninno(i, n_actividades_ninnos, campamento);
+60             n.start();
+61             <span class="literal">long</span> time = (<span class="literal">long</span>) (1000 + 2000*Math.random());
+62             <span class="literal">try</span> {
+63                 sleep(time);
+64             } <span class="literal">catch</span> (InterruptedException ex) {
+65                 Logger.getLogger(Generador.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+66             }
+67         }
+68     }
+69 }
+70 
+</pre></body>
+</html>

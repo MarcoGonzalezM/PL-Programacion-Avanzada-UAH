@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ZonaComun.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="comment">/*</span>
+ 2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+ 3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+ 4 <span class="comment"> * and open the template in the editor.</span>
+ 5 <span class="comment"> */</span>
+ 6 <span class="literal">package</span> Modelo;
+ 7 
+ 8 <span class="literal">import</span> Interfaz.Escritor;
+ 9 <span class="literal">import</span> <span class="literal">static</span> java.lang.Thread.sleep;
+10 <span class="literal">import</span> java.util.concurrent.CopyOnWriteArrayList;
+11 <span class="literal">import</span> java.util.logging.Level;
+12 <span class="literal">import</span> java.util.logging.Logger;
+13 
+14 <span class="comment">/**</span>
+15 <span class="comment"> *</span>
+16 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+17  <span class="comment">*/</span>
+18 <span class="literal">public</span> <span class="literal">class</span> ZonaComun {
+19     <span class="literal">private</span> Escritor escritor;
+20     <span class="literal">private</span> Paso paso;
+21     <span class="literal">private</span> CopyOnWriteArrayList&lt;Ninno&gt; ninnoZonaComun = <span class="literal">new</span> CopyOnWriteArrayList&lt;&gt;();
+22     <span class="literal">private</span> CopyOnWriteArrayList&lt;Monitor&gt; monZonaComun = <span class="literal">new</span> CopyOnWriteArrayList&lt;&gt;();
+23 
+24     <span class="literal">public</span> ZonaComun(Escritor p_escritor, Paso p_paso){
+25         escritor = p_escritor;
+26         paso = p_paso;
+27     }
+28     
+29     <span class="literal">public</span> <span class="literal">void</span> descansar(Ninno ninno){
+30         paso.mirar();
+31         ninnoZonaComun.add(ninno);
+32         escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> inicia su descanso</span><span class="string">&quot;</span>);
+33         paso.mirar();
+34         <span class="literal">try</span> {
+35             sleep((<span class="literal">int</span>) (2000 + 2000*Math.random()));
+36         } <span class="literal">catch</span> (InterruptedException ex) {
+37             Logger.getLogger(ZonaComun.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+38         }
+39         paso.mirar();
+40         ninnoZonaComun.remove(ninno);
+41         escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> finaliza su descanso</span><span class="string">&quot;</span>);
+42     }
+43     
+44     <span class="literal">public</span> <span class="literal">void</span> descansar(Monitor mon){
+45         paso.mirar();
+46         monZonaComun.add(mon);
+47         escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> inicia su descanso</span><span class="string">&quot;</span>);
+48         paso.mirar();
+49         <span class="literal">try</span> {
+50             sleep((<span class="literal">int</span>) (1000 + 1000*Math.random()));
+51         } <span class="literal">catch</span> (InterruptedException ex) {
+52             Logger.getLogger(ZonaComun.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+53         }
+54         paso.mirar();
+55         monZonaComun.remove(mon);
+56         escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> finaliza su descanso</span><span class="string">&quot;</span>);
+57     }
+58     
+59     <span class="literal">public</span> String getNinno(){
+60         String msg = <span class="string">&quot;&quot;</span>;
+61         <span class="literal">for</span> (Ninno ninno:ninnoZonaComun){
+62             msg += ninno.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+63         }
+64         <span class="literal">return</span> msg;    
+65     }
+66     
+67     <span class="literal">public</span> String getMon(){
+68         String msg = <span class="string">&quot;&quot;</span>;
+69         <span class="literal">for</span> (Monitor mon:monZonaComun){
+70             msg += mon.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+71         }
+72         <span class="literal">return</span> msg;    
+73     }
+74 }
+75 
+</pre></body>
+</html>

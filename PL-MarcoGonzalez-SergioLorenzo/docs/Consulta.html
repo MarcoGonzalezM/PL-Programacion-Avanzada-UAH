@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Consulta.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="comment">/*</span>
+ 2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+ 3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+ 4 <span class="comment"> * and open the template in the editor.</span>
+ 5 <span class="comment"> */</span>
+ 6 <span class="literal">package</span> Cliente;
+ 7 
+ 8 <span class="literal">import</span> java.io.DataInputStream;
+ 9 <span class="literal">import</span> java.io.DataOutputStream;
+10 <span class="literal">import</span> java.io.IOException;
+11 <span class="literal">import</span> java.net.InetAddress;
+12 <span class="literal">import</span> java.net.Socket;
+13 <span class="literal">import</span> java.util.logging.Level;
+14 <span class="literal">import</span> java.util.logging.Logger;
+15 <span class="literal">import</span> javax.swing.JLabel;
+16 <span class="literal">import</span> javax.swing.JTextField;
+17 
+18 <span class="comment">/**</span>
+19 <span class="comment"> *</span>
+20 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">sergi</span>
+21  <span class="comment">*/</span>
+22 <span class="literal">public</span> <span class="literal">class</span> Consulta <span class="literal">extends</span> Thread{
+23     <span class="literal">private</span> <span class="literal">int</span> numConsulta;
+24     <span class="literal">private</span> String ninno;
+25     <span class="literal">private</span> JTextField textFieldCons;
+26     <span class="literal">private</span> JLabel carga;
+27     <span class="literal">private</span> Socket cliente;
+28     <span class="literal">private</span> DataOutputStream salida;
+29     <span class="literal">private</span> DataInputStream entrada;
+30 
+31     <span class="literal">public</span> Consulta(<span class="literal">int</span> p_numConsulta, JTextField p_textFieldCons , JLabel p_carga) {
+32         <span class="literal">try</span>{
+33             cliente = <span class="literal">new</span> Socket(InetAddress.getLocalHost(), 6721);
+34             entrada = <span class="literal">new</span> DataInputStream(cliente.getInputStream());
+35             salida = <span class="literal">new</span> DataOutputStream(cliente.getOutputStream());
+36         } <span class="literal">catch</span> (IOException ex) {
+37             Logger.getLogger(Consulta.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+38         }
+39         numConsulta = p_numConsulta;
+40         textFieldCons = p_textFieldCons;
+41         carga = p_carga;
+42     }
+43     
+44     <span class="literal">public</span> Consulta(<span class="literal">int</span> p_numConsulta, String p_ninno, JTextField p_textFieldCons, JLabel p_carga) {
+45         <span class="literal">try</span>{
+46             cliente = <span class="literal">new</span> Socket(InetAddress.getLocalHost(), 6721);
+47             entrada = <span class="literal">new</span> DataInputStream(cliente.getInputStream());
+48             salida = <span class="literal">new</span> DataOutputStream(cliente.getOutputStream());
+49         } <span class="literal">catch</span> (IOException ex) {
+50             Logger.getLogger(Consulta.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+51         }
+52         numConsulta = p_numConsulta;
+53         ninno = p_ninno;
+54         textFieldCons = p_textFieldCons;
+55         carga = p_carga;
+56     }
+57     
+58     
+59     
+60     @Override
+61     <span class="literal">public</span> <span class="literal">void</span> run(){
+62         <span class="literal">try</span>{
+63             carga.setText(<span class="string">&quot;</span><span class="string">C</span><span class="string">&quot;</span>);
+64             salida.writeInt(numConsulta);
+65             <span class="literal">if</span> (numConsulta == 7) {
+66                 salida.writeUTF(ninno);
+67             }
+68             <span class="literal">int</span> numDevuelto = entrada.readInt();
+69             carga.setText(<span class="string">&quot;&quot;</span>);
+70             textFieldCons.setText(numDevuelto+<span class="string">&quot;&quot;</span>);
+71         } <span class="literal">catch</span> (IOException ex) {
+72             Logger.getLogger(Consulta.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+73         }
+74     }
+75 }
+76 
+</pre></body>
+</html>

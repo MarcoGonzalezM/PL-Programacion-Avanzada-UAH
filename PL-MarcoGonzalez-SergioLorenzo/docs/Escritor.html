@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Escritor.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="comment">/*</span>
+ 2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+ 3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+ 4 <span class="comment"> * and open the template in the editor.</span>
+ 5 <span class="comment"> */</span>
+ 6 <span class="literal">package</span> Interfaz;
+ 7 
+ 8 <span class="literal">import</span> java.io.*;
+ 9 <span class="literal">import</span> java.time.LocalDateTime;
+10 <span class="literal">import</span> java.time.format.DateTimeFormatter;
+11 <span class="literal">import</span> java.util.Queue;
+12 <span class="literal">import</span> java.util.concurrent.ConcurrentLinkedQueue;
+13 <span class="literal">import</span> java.util.logging.*;
+14 
+15 <span class="comment">/**</span>
+16 <span class="comment"> *</span>
+17 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+18  <span class="comment">*/</span>
+19 <span class="literal">public</span> <span class="literal">class</span> Escritor <span class="literal">extends</span> Thread{
+20     <span class="literal">private</span> PrintWriter log;
+21     <span class="literal">private</span> Queue&lt;String&gt; colaMsg;
+22     
+23     <span class="literal">public</span> Escritor(){
+24         <span class="literal">try</span> {
+25             log = <span class="literal">new</span> PrintWriter(<span class="literal">new</span> BufferedWriter(<span class="literal">new</span> FileWriter(<span class="string">&quot;</span><span class="string">evolucionCampamento.txt</span><span class="string">&quot;</span>)));
+26         } <span class="literal">catch</span> (IOException ex) {
+27             Logger.getLogger(Escritor.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+28         }
+29         colaMsg = <span class="literal">new</span> ConcurrentLinkedQueue&lt;String&gt;();
+30     }
+31     
+32     <span class="literal">public</span> <span class="literal">synchronized</span> <span class="literal">void</span> addMsg(String msg){
+33         LocalDateTime evtTime = LocalDateTime.now();
+34         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(<span class="string">&quot;</span><span class="string">yyyy/MMMM/dd hh:mm:ss</span><span class="string">&quot;</span>);
+35         msg +=<span class="string">&quot;</span><span class="string"> - </span><span class="string">&quot;</span>+dtf.format(evtTime);
+36         colaMsg.offer(msg);
+37     }
+38     
+39     <span class="literal">public</span> <span class="literal">void</span> print(){
+40         <span class="literal">if</span> (!colaMsg.isEmpty()){
+41             log.println(colaMsg.poll());
+42         }
+43     }
+44     
+45     <span class="literal">public</span> <span class="literal">void</span> close(){
+46         log.close();
+47     }
+48     
+49     <span class="literal">public</span> <span class="literal">void</span> run(){
+50         <span class="literal">while</span>(<span class="literal">true</span>){
+51             print();
+52         }
+53     }
+54 }
+55 
+</pre></body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>RegistroNinno.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="literal">package</span> Modelo;
+ 2 
+ 3 <span class="literal">import</span> java.util.ArrayList;
+ 4 <span class="literal">import</span> java.util.concurrent.locks.Lock;
+ 5 <span class="literal">import</span> java.util.concurrent.locks.ReentrantLock;
+ 6 
+ 7 <span class="comment">/**</span>
+ 8 <span class="comment"> *</span>
+ 9 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">sergi</span>
+10  <span class="comment">*/</span>
+11 <span class="literal">public</span> <span class="literal">class</span> RegistroNinno {
+12     <span class="literal">private</span> ArrayList&lt;Ninno&gt; listaNinnos;
+13     <span class="literal">private</span> Lock cerr = <span class="literal">new</span> ReentrantLock();
+14             
+15     <span class="literal">public</span> RegistroNinno(){
+16         listaNinnos= <span class="literal">new</span> ArrayList&lt;Ninno&gt;();
+17     }
+18     
+19     <span class="literal">public</span> <span class="literal">void</span> annadir(Ninno ninno){
+20         cerr.lock();
+21         <span class="literal">try</span>{
+22             <span class="literal">if</span> (listaNinnos.isEmpty()) listaNinnos.add(ninno);
+23             <span class="literal">else</span>{           
+24                 <span class="literal">int</span> i = listaNinnos.size()-1;
+25                 <span class="literal">while</span> (ninno.compareTo(listaNinnos.get(i)) &lt; 0){
+26                     i--;
+27                 }
+28                 listaNinnos.add(i+1, ninno);
+29             }
+30         } <span class="literal">finally</span> {
+31             cerr.unlock();
+32         }
+33     }
+34     
+35     <span class="literal">private</span> <span class="literal">int</span> binarySearch(String idNinno){
+36         <span class="literal">int</span> left = 0, right = listaNinnos.size() - 1;       
+37         <span class="literal">while</span> (left &lt;= right)
+38         { 
+39             <span class="literal">int</span> mid = left + (right - left) / 2; 
+40     
+41             <span class="comment">// Check if x is present at mid </span>
+42             <span class="literal">if</span> (listaNinnos.get(mid).equals(idNinno)) 
+43                 <span class="literal">return</span> mid; 
+44     
+45             <span class="comment">// If x greater, ignore left half </span>
+46             <span class="literal">if</span> (listaNinnos.get(mid).compareTo(idNinno) &lt; 0) 
+47                 left = mid + 1; 
+48     
+49             <span class="comment">// If x is smaller, ignore right half </span>
+50             <span class="literal">else</span>
+51                 right = mid - 1; 
+52         } 
+53     
+54         <span class="comment">// if we reach here, then element was </span>
+55         <span class="comment">// not present </span>
+56         <span class="literal">return</span> -1;
+57     }
+58     
+59     <span class="literal">public</span> <span class="literal">int</span> numActividadesNinno(String idNinno){
+60         cerr.lock();
+61         <span class="literal">try</span>{
+62             <span class="literal">int</span> pos = binarySearch(idNinno);
+63             <span class="literal">if</span> (pos &lt; 0 || idNinno.equals(<span class="string">&quot;</span><span class="string">N</span><span class="string">&quot;</span>)){
+64                 <span class="literal">return</span> -1;
+65             }
+66             <span class="literal">return</span> listaNinnos.get(pos).actividadesRealizadas();
+67         } <span class="literal">finally</span> {
+68             cerr.unlock();
+69         }
+70     }
+71 }
+72 
+</pre></body>
+</html>

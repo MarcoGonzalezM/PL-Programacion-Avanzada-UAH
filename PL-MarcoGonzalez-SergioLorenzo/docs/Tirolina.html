@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Tirolina.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+  1 <span class="literal">package</span> Modelo;
+  2 
+  3 <span class="literal">import</span> Interfaz.Escritor;
+  4 <span class="literal">import</span> <span class="literal">static</span> java.lang.Thread.sleep;
+  5 <span class="literal">import</span> java.util.ArrayList;
+  6 <span class="literal">import</span> java.util.Queue;
+  7 <span class="literal">import</span> java.util.concurrent.ConcurrentLinkedQueue;
+  8 <span class="literal">import</span> java.util.concurrent.locks.Condition;
+  9 <span class="literal">import</span> java.util.concurrent.locks.Lock;
+ 10 <span class="literal">import</span> java.util.concurrent.locks.ReentrantLock;
+ 11 <span class="literal">import</span> java.util.logging.Level;
+ 12 <span class="literal">import</span> java.util.logging.Logger;
+ 13 
+ 14 <span class="comment">/**</span>
+ 15 <span class="comment"> *</span>
+ 16 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+ 17  <span class="comment">*/</span>
+ 18 <span class="literal">public</span> <span class="literal">class</span> Tirolina {
+ 19     <span class="literal">private</span> <span class="literal">int</span> estadoTirolina = 0;
+ 20     <span class="literal">private</span> <span class="literal">int</span> vecesUsado = 0;
+ 21     <span class="literal">private</span> ArrayList&lt;Ninno&gt; ninnoTirolina = <span class="literal">new</span> ArrayList&lt;&gt;();
+ 22     <span class="literal">private</span> ArrayList&lt;Monitor&gt; monTirolina = <span class="literal">new</span> ArrayList&lt;&gt;();
+ 23     <span class="literal">private</span> Queue&lt;Ninno&gt; colaTirolina = <span class="literal">new</span> ConcurrentLinkedQueue();
+ 24     <span class="literal">private</span> Escritor escritor;
+ 25     <span class="literal">private</span> Paso paso;
+ 26     <span class="literal">private</span> Lock lockTirolina = <span class="literal">new</span> ReentrantLock();
+ 27     <span class="literal">private</span> Condition monitorTirolina = lockTirolina.newCondition();
+ 28     <span class="literal">private</span> Condition primeroCola = lockTirolina.newCondition();
+ 29     <span class="literal">private</span> Condition actividadesMonitor = lockTirolina.newCondition();
+ 30     
+ 31     <span class="literal">public</span> Tirolina(Escritor p_escritor, Paso p_paso){
+ 32         escritor = p_escritor;
+ 33         paso = p_paso;
+ 34     }
+ 35     
+ 36     <span class="literal">public</span> <span class="literal">void</span> tirolina(Ninno ninno){
+ 37         paso.mirar();
+ 38         colaTirolina.offer(ninno);
+ 39         escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> se pone a la cola de la TIROLINA</span><span class="string">&quot;</span>);
+ 40         paso.mirar();
+ 41         lockTirolina.lock();
+ 42         <span class="literal">try</span> {
+ 43             <span class="literal">while</span> (monTirolina.size()==0 || !ninno.equals(colaTirolina.peek())){
+ 44                 <span class="literal">if</span> (monTirolina.size()==0) monitorTirolina.await();
+ 45                 <span class="literal">if</span> (!colaTirolina.peek().equals(ninno))primeroCola.await();
+ 46             }
+ 47             colaTirolina.poll();
+ 48             ninnoTirolina.add(ninno);
+ 49             paso.mirar();
+ 50             estadoTirolina++;
+ 51             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> se empieza a preparar en la TIROLINA</span><span class="string">&quot;</span>);
+ 52             sleep(1000);
+ 53             estadoTirolina++;
+ 54             paso.mirar();
+ 55             sleep(3000);
+ 56             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> se monta en la TIROLINA</span><span class="string">&quot;</span>);
+ 57             paso.mirar();
+ 58             estadoTirolina++;
+ 59             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> llega al fin de la TIROLINA</span><span class="string">&quot;</span>);
+ 60             sleep(500);
+ 61             paso.mirar();
+ 62             estadoTirolina=0;
+ 63             ninnoTirolina.remove(ninno);
+ 64             vecesUsado++;
+ 65             ninno.substractActividad(1);
+ 66             monTirolina.get(0).substractActividad();
+ 67             actividadesMonitor.signal();
+ 68             primeroCola.signalAll();
+ 69         } <span class="literal">catch</span> (InterruptedException ex) {
+ 70             Logger.getLogger(Campamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+ 71         } <span class="literal">finally</span> {
+ 72             lockTirolina.unlock();
+ 73         }
+ 74         escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> abandona la TIROLINA</span><span class="string">&quot;</span>);
+ 75     }
+ 76     
+ 77     <span class="literal">public</span> <span class="literal">void</span> tirolina(Monitor mon) {
+ 78         paso.mirar();
+ 79         lockTirolina.lock();
+ 80         <span class="literal">try</span> {
+ 81             monTirolina.add(mon);
+ 82             paso.mirar();
+ 83             monitorTirolina.signalAll();
+ 84             escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> llega a la TIROLINA</span><span class="string">&quot;</span>);
+ 85             <span class="literal">while</span> (mon.getContadorActividades()&gt;0){
+ 86                 actividadesMonitor.await();
+ 87             }
+ 88             paso.mirar();
+ 89             monTirolina.remove(mon);
+ 90             escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> abandona la TIROLINA</span><span class="string">&quot;</span>);
+ 91         } <span class="literal">catch</span> (InterruptedException ex) {
+ 92             Logger.getLogger(Tirolina.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+ 93         } <span class="literal">finally</span> {
+ 94             lockTirolina.unlock();
+ 95         }
+ 96     }
+ 97     
+ 98     <span class="literal">public</span> String getCola(){
+ 99         String msg = <span class="string">&quot;&quot;</span>;
+100         <span class="literal">for</span> (Ninno ninno:colaTirolina){
+101             msg += ninno.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+102         }
+103         <span class="literal">return</span> msg;
+104     }
+105     <span class="literal">public</span> <span class="literal">int</span> getTamCola(){
+106         <span class="literal">return</span> colaTirolina.size();
+107     }
+108 
+109     <span class="literal">public</span> String getNinno(){
+110         String msg = <span class="string">&quot;&quot;</span>;
+111         <span class="literal">for</span> (Ninno ninno:ninnoTirolina){
+112             msg += ninno.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+113         }
+114         <span class="literal">return</span> msg;
+115     }
+116     <span class="literal">public</span> <span class="literal">int</span> cuantosNinnosCola(){
+117         <span class="literal">return</span> colaTirolina.size();
+118     }
+119 
+120     <span class="literal">public</span> String getMon(){
+121         String msg = <span class="string">&quot;&quot;</span>;
+122         <span class="literal">for</span> (Monitor mon:monTirolina){
+123             msg += mon.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+124         }
+125         <span class="literal">return</span> msg;
+126     }
+127     
+128     <span class="literal">public</span> <span class="literal">int</span> getEstadoTirolina(){
+129         <span class="literal">return</span> estadoTirolina;
+130     }
+131 
+132     <span class="literal">public</span> <span class="literal">int</span> getVecesUsado() {
+133         <span class="literal">return</span> vecesUsado;
+134     }
+135     
+136     
+137     
+138 }
+139 
+</pre></body>
+</html>

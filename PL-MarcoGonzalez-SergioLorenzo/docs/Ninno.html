@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Ninno.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="comment">/*</span>
+ 2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+ 3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+ 4 <span class="comment"> * and open the template in the editor.</span>
+ 5 <span class="comment"> */</span>
+ 6 <span class="literal">package</span> Modelo;
+ 7 
+ 8 <span class="comment">/**</span>
+ 9 <span class="comment"> *</span>
+10 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+11  <span class="comment">*/</span>
+12 <span class="literal">public</span> <span class="literal">class</span> Ninno <span class="literal">extends</span> Thread <span class="literal">implements</span> Comparable&lt;Ninno&gt;{
+13     <span class="comment">//ATRIBUTOS (privados)</span>
+14     <span class="literal">private</span> String id;
+15     <span class="literal">private</span> <span class="literal">int</span> contActividades, totalActividades;
+16     <span class="literal">private</span> Campamento campamento;
+17     
+18     <span class="literal">public</span> Ninno(<span class="literal">int</span> p_id, <span class="literal">int</span> p_contActividades, Campamento p_campamento){
+19         id = <span class="string">&quot;&quot;</span>+100000+p_id;
+20         id = <span class="string">&quot;</span><span class="string">N</span><span class="string">&quot;</span>+id.substring(1);
+21         contActividades = p_contActividades;
+22         totalActividades = p_contActividades;
+23         campamento = p_campamento;
+24     }
+25 
+26     <span class="literal">public</span> String getMiId() {
+27         <span class="literal">return</span> id;
+28     }
+29     
+30     <span class="literal">public</span> <span class="literal">void</span> entrarCamp(){
+31         <span class="literal">boolean</span> entrada = Math.random()&lt;0.5;
+32         <span class="literal">if</span> (entrada){
+33             campamento.entrarPuerta1(<span class="literal">this</span>);
+34         }
+35         <span class="literal">else</span>{
+36             campamento.entrarPuerta2(<span class="literal">this</span>);
+37         }
+38     }
+39     
+40     <span class="literal">public</span> <span class="literal">void</span> seleccionarActividad(){
+41         <span class="literal">boolean</span> meriendaDisp = contActividades&lt;=12;
+42         <span class="literal">int</span> k=0;
+43         <span class="literal">if</span> (meriendaDisp) k=1;
+44         <span class="literal">int</span> actividad = (<span class="literal">int</span>) ((2 + k) * Math.random());
+45         <span class="literal">switch</span> (actividad){
+46             <span class="literal">case</span> 0 -&gt; campamento.usarTirolina(<span class="literal">this</span>);
+47             <span class="literal">case</span> 1 -&gt; campamento.usarSoga(<span class="literal">this</span>);
+48             <span class="literal">case</span> 2 -&gt; campamento.usarMerendero(<span class="literal">this</span>);
+49         }
+50         campamento.usarZonaComun(<span class="literal">this</span>);
+51     }
+52     
+53     <span class="literal">public</span> <span class="literal">void</span> salirCamp(){
+54         campamento.salirCampamento(<span class="literal">this</span>);
+55         campamento.calificar(<span class="literal">this</span>);
+56     }
+57     
+58     <span class="literal">public</span> <span class="literal">void</span> substractActividad(<span class="literal">int</span> num){
+59         contActividades-=num;
+60     }
+61     
+62     <span class="literal">public</span> <span class="literal">int</span> actividadesRealizadas(){
+63         <span class="literal">return</span> totalActividades - contActividades;
+64     }
+65     
+66     <span class="literal">public</span> <span class="literal">boolean</span> equals(Ninno ninno) {
+67         <span class="literal">return</span> Integer.valueOf(id.substring(1)).equals(Integer.valueOf(ninno.getMiId().substring(1)));
+68     }
+69     <span class="literal">public</span> <span class="literal">boolean</span> equals(String idNinno) {
+70         <span class="literal">return</span> Integer.valueOf(id.substring(1)).equals(Integer.valueOf(idNinno.substring(1)));
+71     }
+72     
+73     @Override
+74     <span class="literal">public</span> <span class="literal">int</span> compareTo(Ninno ninno) {
+75         <span class="comment">//a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.</span>
+76         <span class="literal">return</span> Integer.valueOf(id.substring(1)).compareTo(Integer.valueOf(ninno.getMiId().substring(1)));
+77     }
+78     <span class="literal">public</span> <span class="literal">int</span> compareTo(String idNinno) {
+79         <span class="comment">//a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.</span>
+80         <span class="literal">return</span> Integer.valueOf(id.substring(1)).compareTo(Integer.valueOf(idNinno.substring(1)));
+81     }
+82     
+83     <span class="literal">public</span> <span class="literal">void</span> run(){
+84     entrarCamp();
+85     <span class="literal">while</span> (contActividades&gt;0){
+86         seleccionarActividad();
+87     }
+88     salirCamp();
+89     } 
+90 }
+91 
+</pre></body>
+</html>

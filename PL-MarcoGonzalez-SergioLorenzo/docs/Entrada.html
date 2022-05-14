@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Entrada.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<pre>
+  1 <span class="comment">/*</span>
+  2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+  3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+  4 <span class="comment"> * and open the template in the editor.</span>
+  5 <span class="comment"> */</span>
+  6 <span class="literal">package</span> Modelo;
+  7 
+  8 <span class="literal">import</span> Interfaz.Escritor;
+  9 <span class="literal">import</span> <span class="literal">static</span> java.lang.Thread.sleep;
+ 10 <span class="literal">import</span> java.util.concurrent.CopyOnWriteArrayList;
+ 11 <span class="literal">import</span> java.util.concurrent.CountDownLatch;
+ 12 <span class="literal">import</span> java.util.concurrent.atomic.AtomicInteger;
+ 13 <span class="literal">import</span> java.util.concurrent.locks.Condition;
+ 14 <span class="literal">import</span> java.util.concurrent.locks.Lock;
+ 15 <span class="literal">import</span> java.util.concurrent.locks.ReentrantLock;
+ 16 <span class="literal">import</span> java.util.logging.Level;
+ 17 <span class="literal">import</span> java.util.logging.Logger;
+ 18 
+ 19 <span class="comment">/**</span>
+ 20 <span class="comment"> *</span>
+ 21 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+ 22  <span class="comment">*/</span>
+ 23 <span class="literal">public</span> <span class="literal">class</span> Entrada {
+ 24     <span class="literal">private</span> <span class="literal">int</span> huecosDisponibles;
+ 25     <span class="literal">private</span> AtomicInteger nMonitoresP1 = <span class="literal">new</span> AtomicInteger(0);
+ 26     <span class="literal">private</span> AtomicInteger nMonitoresP2 = <span class="literal">new</span> AtomicInteger(0);
+ 27     <span class="literal">private</span> <span class="literal">boolean</span> alternancia = <span class="literal">false</span>;
+ 28     <span class="literal">private</span> Escritor escritor;
+ 29     <span class="literal">private</span> Paso paso;
+ 30     <span class="literal">private</span> CopyOnWriteArrayList&lt;Ninno&gt; colaEntrada1 = <span class="literal">new</span> CopyOnWriteArrayList&lt;&gt;();
+ 31     <span class="literal">private</span> CopyOnWriteArrayList&lt;Ninno&gt; colaEntrada2 = <span class="literal">new</span> CopyOnWriteArrayList&lt;&gt;();
+ 32     <span class="literal">private</span> CountDownLatch cdl1 = <span class="literal">new</span> CountDownLatch(1);
+ 33     <span class="literal">private</span> CountDownLatch cdl2 = <span class="literal">new</span> CountDownLatch(1);
+ 34     <span class="literal">private</span> Lock lockEntrada = <span class="literal">new</span> ReentrantLock();
+ 35     <span class="literal">private</span> Condition puerta1 = lockEntrada.newCondition();
+ 36     <span class="literal">private</span> Condition puerta2 = lockEntrada.newCondition();
+ 37     
+ 38     <span class="literal">public</span> Entrada(<span class="literal">int</span> p_huecosDisponibles, Escritor p_escritor, Paso p_paso){
+ 39         huecosDisponibles = p_huecosDisponibles;
+ 40         escritor = p_escritor;
+ 41         paso = p_paso;        
+ 42     }
+ 43     
+ 44     <span class="literal">public</span> <span class="literal">void</span> entrarPuerta1(Ninno ninno){
+ 45         <span class="literal">try</span> {
+ 46             paso.mirar();
+ 47             colaEntrada1.add(ninno);
+ 48             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> entra a la cola de entrada 1</span><span class="string">&quot;</span>);
+ 49             paso.mirar();
+ 50             cdl1.await();
+ 51         } <span class="literal">catch</span> (InterruptedException ex) {
+ 52             Logger.getLogger(Campamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+ 53         }
+ 54         lockEntrada.lock();
+ 55         <span class="literal">try</span>{
+ 56             <span class="literal">while</span>(huecosDisponibles == 0)
+ 57             {
+ 58                 puerta1.await();
+ 59             }
+ 60             paso.mirar();
+ 61             colaEntrada1.remove(ninno);
+ 62             huecosDisponibles--;
+ 63         } <span class="literal">catch</span>(InterruptedException ex){
+ 64             Logger.getLogger(Campamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);        
+ 65         }
+ 66         <span class="literal">finally</span>{
+ 67             lockEntrada.unlock();
+ 68             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> entra al campamento por la puerta 1</span><span class="string">&quot;</span>);
+ 69         }
+ 70     }
+ 71     <span class="literal">public</span> <span class="literal">void</span> entrarPuerta2(Ninno ninno){
+ 72         <span class="literal">try</span> {
+ 73             paso.mirar();
+ 74             colaEntrada2.add(ninno);
+ 75             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> entra a la cola de entrada 2</span><span class="string">&quot;</span>);
+ 76             paso.mirar();
+ 77             cdl2.await();
+ 78         } <span class="literal">catch</span> (InterruptedException ex) {
+ 79             Logger.getLogger(Campamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+ 80         }
+ 81         lockEntrada.lock();
+ 82         <span class="literal">try</span>{
+ 83             <span class="literal">while</span>(huecosDisponibles == 0)
+ 84             {
+ 85                 puerta2.await();
+ 86             }
+ 87             paso.mirar();
+ 88             colaEntrada2.remove(ninno);
+ 89             huecosDisponibles--;
+ 90             
+ 91         } <span class="literal">catch</span>(InterruptedException ex){
+ 92             Logger.getLogger(Campamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);        
+ 93         } <span class="literal">finally</span>{
+ 94             lockEntrada.unlock();
+ 95             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> entra al campamento por la puerta 2</span><span class="string">&quot;</span>);
+ 96         }
+ 97     }
+ 98     <span class="literal">public</span> <span class="literal">void</span> salirCampamento(Ninno ninno){
+ 99         lockEntrada.lock();
+100         <span class="literal">try</span> {
+101             huecosDisponibles++;
+102             <span class="literal">if</span>(colaEntrada1.size() &gt; 0 &amp;&amp; colaEntrada2.size() &gt; 0){
+103                 <span class="comment">// Si hay niños esperando en las dos entradas (alternancia)</span>
+104                 <span class="literal">if</span>(!alternancia)
+105                 {
+106                     puerta2.signal();
+107                     alternancia = <span class="literal">true</span>;
+108                 }
+109                 <span class="literal">else</span>{
+110                     puerta1.signal();
+111                     alternancia = <span class="literal">false</span>;
+112                 }
+113             }
+114             <span class="literal">else</span>{
+115                 <span class="literal">if</span>(colaEntrada1.size() &gt; 0)
+116                     puerta1.signal();
+117                 <span class="literal">else</span> <span class="literal">if</span> (colaEntrada2.size() &gt; 0)
+118                     puerta2.signal();
+119             }
+120         } <span class="literal">finally</span> {
+121             lockEntrada.unlock();
+122             escritor.addMsg(ninno.getMiId() + <span class="string">&quot;</span><span class="string"> sale del campamento</span><span class="string">&quot;</span>);
+123         }
+124     }
+125     
+126     <span class="literal">public</span> <span class="literal">synchronized</span> <span class="literal">void</span> abrirCamp1(Monitor mon){
+127         paso.mirar();
+128         <span class="literal">if</span> (cdl1.getCount()&gt;0){
+129             <span class="literal">long</span> time = (<span class="literal">long</span>) (500 + 500 * Math.random());
+130             <span class="literal">try</span> {
+131                 sleep(time);
+132             } <span class="literal">catch</span> (InterruptedException ex) {
+133                 Logger.getLogger(Campamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+134             }
+135             cdl1.countDown();
+136             escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> abre la puerta 1</span><span class="string">&quot;</span>);
+137         }
+138         escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> entra al campamento por la puerta 1</span><span class="string">&quot;</span>);
+139     }
+140     <span class="literal">public</span> <span class="literal">synchronized</span> <span class="literal">void</span> abrirCamp2(Monitor mon){
+141         paso.mirar();
+142         <span class="literal">if</span> (cdl2.getCount()&gt;0){
+143             <span class="literal">long</span> time = (<span class="literal">long</span>) (500 + 500 * Math.random());
+144             <span class="literal">try</span> {
+145                 sleep(time);
+146             } <span class="literal">catch</span> (InterruptedException ex) {
+147                 Logger.getLogger(Campamento.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+148             }
+149             cdl2.countDown();
+150             escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> abre la puerta 2</span><span class="string">&quot;</span>);
+151         }
+152         escritor.addMsg(mon.getMiId() + <span class="string">&quot;</span><span class="string"> entra al campamento por la puerta 2</span><span class="string">&quot;</span>);
+153     }
+154 
+155     <span class="literal">public</span> <span class="literal">void</span> incrementNMonitoresP1(){
+156         nMonitoresP1.getAndIncrement();       
+157     }
+158     
+159     <span class="literal">public</span> <span class="literal">void</span> incrementNMonitoresP2(){
+160         nMonitoresP2.getAndIncrement();       
+161     }
+162     
+163     <span class="literal">public</span> <span class="literal">int</span> getNMonitoresP1() {
+164         <span class="literal">return</span> nMonitoresP1.get();
+165     }
+166 
+167     <span class="literal">public</span> <span class="literal">int</span> getNMonitoresP2() {
+168         <span class="literal">return</span> nMonitoresP2.get();
+169     }
+170     
+171     <span class="literal">public</span> String getCola1() {
+172         String msg = <span class="string">&quot;&quot;</span>;
+173         <span class="literal">for</span> (Ninno ninno:colaEntrada1){
+174             msg += ninno.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+175         }
+176         <span class="literal">return</span> msg;
+177     }
+178 
+179     <span class="literal">public</span> String getCola2() {
+180         String msg = <span class="string">&quot;&quot;</span>;
+181         <span class="literal">for</span> (Ninno ninno:colaEntrada2){
+182             msg += ninno.getMiId() + <span class="string">&quot;</span> <span class="string">&quot;</span>;
+183         }
+184         <span class="literal">return</span> msg;
+185     }   
+186 }
+</pre></body>
+</html>

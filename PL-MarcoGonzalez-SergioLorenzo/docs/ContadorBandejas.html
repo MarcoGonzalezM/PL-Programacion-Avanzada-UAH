@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ContadorBandejas.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+-->
+</style>
+</head>
+<body>
+<pre>
+ 1 <span class="comment">/*</span>
+ 2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+ 3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+ 4 <span class="comment"> * and open the template in the editor.</span>
+ 5 <span class="comment"> */</span>
+ 6 <span class="literal">package</span> Modelo;
+ 7 
+ 8 <span class="literal">import</span> java.util.logging.Level;
+ 9 <span class="literal">import</span> java.util.logging.Logger;
+10 
+11 <span class="comment">/**</span>
+12 <span class="comment"> *</span>
+13 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">marco</span>
+14  <span class="comment">*/</span>
+15 <span class="literal">public</span> <span class="literal">class</span> ContadorBandejas {
+16     
+17     <span class="literal">private</span> <span class="literal">int</span> cantidad;
+18 
+19     <span class="literal">public</span> ContadorBandejas(<span class="literal">int</span> cantidad) {
+20         <span class="literal">this</span>.cantidad = cantidad;
+21     }
+22     
+23     <span class="literal">public</span> <span class="literal">synchronized</span> <span class="literal">void</span> annadirBandeja(){
+24         cantidad++;
+25         notify();
+26     }
+27 
+28     <span class="literal">public</span> <span class="literal">synchronized</span> <span class="literal">void</span> extraerBandeja(){
+29         <span class="literal">while</span>(cantidad==0){
+30             <span class="literal">try</span> {
+31                 wait();
+32             } <span class="literal">catch</span> (InterruptedException ex) {
+33                 Logger.getLogger(ContadorBandejas.<span class="literal">class</span>.getName()).log(Level.SEVERE, <span class="literal">null</span>, ex);
+34             }
+35         }
+36         cantidad--;
+37     }
+38     
+39     <span class="literal">public</span> <span class="literal">int</span> get(){
+40         <span class="literal">return</span> cantidad;
+41     }
+42 }
+43 
+</pre></body>
+</html>
