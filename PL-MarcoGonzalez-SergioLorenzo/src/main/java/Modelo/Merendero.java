@@ -30,7 +30,7 @@ public class Merendero {
     public Merendero(int p_nBandejas, int p_aforoMer, Escritor p_escritor, Paso p_paso){
         bandLimpias = new ContadorBandejas(0);
         bandSucias = new ContadorBandejas(p_nBandejas);
-        semMerienda = new Semaphore(20,true);
+        semMerienda = new Semaphore(p_aforoMer,true);
         escritor = p_escritor;
         paso = p_paso;
     }

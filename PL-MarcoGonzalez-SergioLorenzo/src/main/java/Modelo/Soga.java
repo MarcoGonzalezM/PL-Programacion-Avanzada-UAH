@@ -35,7 +35,7 @@ public class Soga {
     
     public void soga(Ninno ninno){
         paso.mirar();
-        if (colaSoga.size()+colaSogaEquipoA.size()+colaSogaEquipoB.size()<tamEquipo*2){
+        if (colaSoga.size()+colaSogaEquipoA.size()+colaSogaEquipoB.size()<tamEquipo*2){ 
             try {
                 colaSoga.put(ninno);
             } catch (InterruptedException ex) {
